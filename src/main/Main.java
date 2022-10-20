@@ -4,13 +4,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Dhoani.addFridge(0.02);
-        System.out.println(Dhoani.fridge);
-        Dhoani.addFridge(0.02);
-        System.out.println(Dhoani.fridge);
-        Dhoani.addFridge(0.02);
-        System.out.println(Dhoani.fridge);
-
+        Dhoani.addDiesel(10);
+        Dhoani.addDiesel(12);
+        Dhoani.addDiesel(10);
+        // System.out.println(Dhoani.meter3_to_1000kgs(4));
     }
 
 }
