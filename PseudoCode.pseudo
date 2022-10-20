@@ -1,0 +1,41 @@
+CLASS Dhoani DO 
+    
+    diesel DOUBLE
+    frozen DOUBLE
+    fridge DOUBLE
+    food_protected_unprotected DOUBLE
+
+    diesel_MAX DOUBLE 
+    frozen_MAX DOUBLE
+    fridge_MAX DOUBLE
+    food_protected_unprotected_MAX DOUBLE
+
+    set diesel_MAX = 4
+    set frozen_MAX = 0.04
+    set fridge_MAX = 0.05
+    set food_protected_unprotected_MAX = 28
+
+    
+    FUNCTION DOUBLE addDiesel(data DOUBLE) DO
+
+        WHILE diesel < diesel_MAX DO  
+            DECREMENT data by 0.01
+            INCREMENT diesel by 0.01
+        END
+        
+        RETURN data
+
+    END
+
+    FUNCTION removeDiesel(data DOUBLE) DO
+
+        WHILE (diesel > 0) DO
+            DECREMENT diesel by 0.01
+        END
+
+    END
+
+    
+
+
+END
