@@ -5,22 +5,21 @@ public class Dhoani {
     // DEFINING AND INTIALIZING STORAGES (in 1000Kgs)
     // -----------------------------------
     static double diesel_in_tank = 0;
-    static double frozen_in_tank = 0;
+    static double frozen_in_tank = 1000;
     static double fridge_in_tank = 0;
+    // shared storage
     static double food_in_tank = 0;
     static double protected_materials_in_tank = 0;
     static double unprotected_materials_in_tank = 0;
-    //
-    static double dhoani_current_total_materials = diesel_in_tank + frozen_in_tank + fridge_in_tank + food_in_tank
-            + protected_materials_in_tank;
+    // total dhoani storage
 
-    // DEFINING MAX CAPACITY (in 1000Kgs)
+    // DEFINING MAX CAPACITY (in Kgs)
     // -----------------------------------------------
-    static double diesel_MAX = 3.328; // (4)m3 -> kgs (in 1000)
-    static double frozen_MAX = 0.040;
-    static double fridge_MAX = 0.050;
-    static double food_protected_unprotected_materials_MAX = 28;
-    static double dhoani_allowed_max = 30;
+    static double diesel_MAX = 3328; // (4)m3 -> kgs
+    static double frozen_MAX = 40;
+    static double fridge_MAX = 50;
+    static double food_protected_unprotected_materials_MAX = 28000;
+    static double dhoani_allowed_max = 30000;
 
     // ---------------------------------------------------------------------
     // ADD FUNCTIONS: Adds to the rescoures (attribs) after user gives input
@@ -28,14 +27,11 @@ public class Dhoani {
     public static void addDiesel(double input) {
 
         diesel_in_tank = add(
-                Converter.meter3_to_1000kgs(input),
+                meter3_to_kgs(input),
                 diesel_in_tank,
                 diesel_MAX);
 
-        displayStorageStatus(
-                "DIESEL",
-                diesel_in_tank,
-                diesel_MAX);
+        displayDieselStatus();
     }
 
     public static void addFrozen(double input) {
@@ -102,28 +98,77 @@ public class Dhoani {
 
     // ---------------------------------------------------------------------
     // GENERALLIZED ADD FUNCTIONS------------------------
+
     // This function is used to add diesel, frozen, fridge.
     private static double add(double input, double storage_in_tank, double MAX) {
 
-        if (input + storage_in_tank < MAX && input + dhoani_current_total_materials > dhoani_allowed_max) {
+        // checks the current time as good can be loaded to Dhoani during day time
+        if (Main.current_time < 18) {
 
-            System.out.println("Added: " + input);
-            return input + storage_in_tank;
+            // calulating total capacity in dhoani (all storages combined)
+            double dhoani_current_total_materials = diesel_in_tank +
+                    frozen_in_tank +
+                    fridge_in_tank +
+                    food_in_tank +
+                    protected_materials_in_tank +
+                    unprotected_materials_in_tank;
 
+            if (input + storage_in_tank <= MAX && input + dhoani_current_total_materials <= dhoani_allowed_max) {
+
+                System.out.println("Successful!");
+                return input + storage_in_tank;
+
+            } else {
+
+                System.out.println(
+                        "\nNot enough space!" +
+                                "\nSpace available: " + (MAX - storage_in_tank));
+                return storage_in_tank;
+
+            }
         } else {
-
-            System.out.println(
-                    "\nNot enough space!" +
-                            "\nAttemted input: " + input +
-                            "\nSpace remaining: " + (MAX - storage_in_tank));
+            System.out.println("Its currently night time. Goods can be loaded to the boat during day time");
             return storage_in_tank;
-
         }
+
     }
 
     // This function is used to add food, protected, unprotected materials since
     // they share a common space unit for storage.
-    private static double addShared(double input, double storage, double MAX) {
+    private static double addShared(double input, double storage_in_tank, double MAX) {
+
+        // calulating total capacity in dhoani (all storages combined)
+        double dhoani_current_total_materials = diesel_in_tank +
+                frozen_in_tank +
+                fridge_in_tank +
+                food_in_tank +
+                protected_materials_in_tank +
+                unprotected_materials_in_tank;
+
+        double shared_materials_in_tank = food_in_tank +
+                protected_materials_in_tank +
+                unprotected_materials_in_tank;
+
+        if (Main.current_time < 18) {
+
+            if (input + shared_materials_in_tank <= MAX
+                    && input + dhoani_current_total_materials <= dhoani_allowed_max) {
+
+                System.out.println("Successful!\n");
+                return input + storage_in_tank;
+
+            } else {
+
+                System.out.println(
+                        "\nNot enough space!" +
+                                "\nSpace available: " + (MAX - storage_in_tank) + "\n");
+                return storage_in_tank;
+
+            }
+
+        } else {
+            System.out.println("Its currently night time. Goods can loaded to the boat during day time");
+        }
         return input;
     }
 
@@ -133,14 +178,49 @@ public class Dhoani {
     public static void removeDiesel(double input) {
 
     }
+    // ---------------------------------------------------------------------
+    // GENERALLIZED REMOVE FUNCTIONS------------------------
 
     // ---------------------------------------------------------------------
     // DISPLAY CURRENT STORAGE AND MAX CAPACITY: A handy function created to display
     // current and MAX Capacity
-    public static void displayStorageStatus(String storage_name, double storage, double MAX) {
+
+    // For the total dhoani
+    public static void dhoaniTotalWeightStatus() {
+        System.out.println("--------------------");
+        System.out.println("DHOANI STATUS:");
+        System.out.println("Current Total storage in Dhoani: " + dhoani_current_total_materials);
+        System.out.println("Dhonai Total Maximum Capacity: " + dhoani_allowed_max + "\n");
+    }
+
+    // for all storages except for diesel
+    public static void displayStorageStatus(String storage_name, double storage_in_tank, double MAX) {
+        System.out.println("--------------------");
         System.out.println("DHOANI " + storage_name + " STATUS:");
-        System.out.println("Current Capacity: " + storage);
+        System.out.println("Current In Tank: " + storage_in_tank);
         System.out.println("Maximum Capacity: " + MAX + "\n");
+        dhoaniTotalWeightStatus();
+    }
+
+    // for diesel (seperate function since kgs_to_meter3 conversion has to be made)
+    public static void displayDieselStatus() {
+        System.out.println("DHOANI DIESEL STATUS:");
+        System.out.println("Current In Tank: " + kgs_to_meter3(diesel_in_tank));
+        System.out.println("Maximum Capacity: " + kgs_to_meter3(diesel_MAX) + "\n");
+        dhoaniTotalWeightStatus();
+    }
+
+    // ---------------------------------------------------------------------
+    // CONVERTER FUNCTIONS:
+
+    // m3 -> Kgs (in 1000)
+    public static double meter3_to_kgs(double input) {
+        return input * 832;
+    }
+
+    // Kgs (in 1000) -> m3
+    public static double kgs_to_meter3(double input) {
+        return input / 832;
     }
 
 }
