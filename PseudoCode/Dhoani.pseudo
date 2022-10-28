@@ -1,0 +1,45 @@
+CLASS Dhoani DO 
+    
+    // DEFINING AND INTIALIZING STORAGES in Kgs
+    
+    diesel_in_tank : static double
+    frozen_in_tank : static double
+    fridge_in_tank :static double 
+    food_in_tank : static double
+    protected_materials_in_tank : static double 
+    unprotected_materials_in_tank : static double
+
+    SET diesel_in_tank TO 0
+    SET frozen_in_tank TO 0
+    SET fridge_in_tank TO 0
+    SET food_in_tank TO 0
+    SET protected_materials_in_tank TO 0
+    SET unprotected_materials_in_tank TO 0
+
+    // DEFINING AND SETTING MAX CAPACITY in Kgs
+    
+    diesel_MAX : static double  3328; 
+    frozen_MAX : static double  40;
+    fridge_MAX : static double  50;
+    food_protected_unprotected_materials_MAX : static double  28000;
+    dhoani_allowed_max : static double  30000;
+
+    SET diesel_MAX TO 3328 // 4m3 -> kg
+    SET frozen_MAX TO 40
+    SET fridge_in_tank 50
+    SET food_protected_unprotected_materials_MAX TO 28000
+    
+    FUNCTION addDiesel (input: double) DO
+        CONVERT input FROM m3 TO kgs
+        CALL add(input)
+    END
+
+    
+
+    
+    
+
+    
+
+
+END
