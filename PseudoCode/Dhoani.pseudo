@@ -96,7 +96,6 @@ CLASS Dhoani DO
             END ELSE DO
                 DISPLAY 'that much storage not available'
             END
-        
     END
 
     
