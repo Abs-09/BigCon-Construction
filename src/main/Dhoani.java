@@ -102,7 +102,7 @@ public class Dhoani {
     private static double add(double input, double storage_in_tank, double MAX) {
 
         // checks the current time as good can be loaded to Dhoani during day time
-        if (Main.current_time < 18) {
+        if (Main.current_time > 18) {
 
             if (input + storage_in_tank <= MAX && input + dhoaniCurrentTotalMaterials() <= dhoani_allowed_max) {
 
@@ -147,7 +147,7 @@ public class Dhoani {
             }
 
         } else {
-            System.out.println("Its currently night time. Goods can loaded to the boat during day time");
+            System.out.println("Its currently day time. Goods can loaded to the boat during night time");
         }
         return input;
     }
@@ -156,10 +156,19 @@ public class Dhoani {
     // REMOVE FUNCTIONS: Adds to the rescoures (attribs) after user gives input
     // Please refer below for subfunctions used.
     public static void removeDiesel(double input) {
-
+        diesel_in_tank =
     }
     // ---------------------------------------------------------------------
     // GENERALLIZED REMOVE FUNCTIONS------------------------
+
+    public static double remove(double input, double storage_in_tank){
+        if (input<storage_in_tank){
+            return storage_in_tank - input;
+        }else{
+            System.out.println("There is not that much available in the dhoani tank");
+            return storage_in_tank;
+        }
+    }
 
     // ---------------------------------------------------------------------
     // DISPLAY CURRENT STORAGE AND MAX CAPACITY: A handy function created to display

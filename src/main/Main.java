@@ -2,7 +2,7 @@ package src.main;
 
 public class Main {
 
-    static int current_time = 0;
+    static int current_time = 19;
 
     public static void main(String[] args) {
         // Menu.mainMenu();

@@ -29,12 +29,75 @@ CLASS Dhoani DO
     SET fridge_in_tank 50
     SET food_protected_unprotected_materials_MAX TO 28000
     
+    //ALL ADD FUNCTIONS
+
     FUNCTION addDiesel (input: double) DO
         CONVERT input FROM m3 TO kgs
         CALL add(input)
+        DISPLAY updates
     END
 
-    
+    FUNCTION addFrozen (input: double) DO
+        CALL add(input)
+        DISPLAY updates
+    END
+
+    FUNCTION addFridge (input: double) DO
+        CALL add(input)
+        DISPLAY updates
+    END
+
+    FUNCTION addFood (input: double) DO
+        CALL addShared(input)
+        DISPLAY updates
+    END
+
+    FUNCTION addProtectedMaterials (input: double) DO
+        CALL addShared(input)
+        DISPLAY updates
+    END
+
+    FUNCTION addProtectedMaterials (input: double) DO
+        CALL addShared(input)
+        DISPLAY updates
+    END
+
+    FUNCTION add(input: double) DO
+        IF (time < 18) DO
+            IF (input + currentstorage <= MAXstorage) DO
+                ADD input to TANK
+            END ELSE DO
+                DISPLAY 'not enough space'
+            END
+        END ELSE DO
+
+        END
+    END
+
+    FUNCTION addShared(input: double) DO
+
+    sharedStorage = food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank
+        IF (time < 18) DO
+            IF (input + currentstorage <= storageMAX && input + sharedStorage <= sharedStorageMax) DO
+                ADD input to TANK
+            END ELSE DO
+                DISPLAY 'not enough space'
+            END
+        END ELSE DO
+
+        END
+    END
+
+    //REMOVE FUNCTIONS
+
+    FUNCTION remove(input: double) DO //input is the amount to remove
+            IF (input < storage) DO
+                RETURN storage - input
+            END ELSE DO
+                DISPLAY 'that much storage not available'
+            END
+        
+    END
 
     
     
