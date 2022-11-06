@@ -90,15 +90,46 @@ CLASS Dhoani DO
 
     //REMOVE FUNCTIONS
 
+    FUNCTION removeDiesel(input: double) DO
+        CONVERT input FROM m3 TO kgs
+        remove(input)
+        DISPLAY updates
+    END
+
+    FUNCTION removeFrozen(input: double) DO 
+        remove(input)
+        DISPLAY updates
+    END
+
+    FUNCTION removeFridge(input: double) DO 
+        remove(input)
+        DISPLAY updates
+    END
+
+    FUNCTION removeFood(input: double) DO 
+        remove(input)
+        DISPLAY updates
+    END
+
+    FUNCTION removeProtectedMaterials(input: double) DO 
+        remove(input)
+        DISPLAY updates
+    END
+
+    FUNCTION removeUnprotectedMaterials(input: double) DO 
+        remove(input)
+        DISPLAY updates
+    END
+
     FUNCTION remove(input: double) DO //input is the amount to remove
             IF (input < storage) DO
                 RETURN storage - input
             END ELSE DO
-                DISPLAY 'that much storage not available'
+                DISPLAY "that much storage not available"
             END
     END
 
-    
+    /
     
 
     
