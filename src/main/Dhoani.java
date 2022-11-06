@@ -156,15 +156,68 @@ public class Dhoani {
     // REMOVE FUNCTIONS: Adds to the rescoures (attribs) after user gives input
     // Please refer below for subfunctions used.
     public static void removeDiesel(double input) {
-        diesel_in_tank =
+        diesel_in_tank = remove(meter3_to_kgs(input), diesel_in_tank);
+        displayDieselStatus();
     }
+
+    public static void removeFrozen(double input) {
+
+        frozen_in_tank = remove(input, frozen_in_tank);
+
+        displayStorageStatus(
+                "FROZEN",
+                frozen_in_tank,
+                frozen_MAX);
+    }
+
+    public static void removeFridge(double input) {
+
+        fridge_in_tank = remove(input, fridge_in_tank);
+
+        displayStorageStatus(
+                "FRIDGE",
+                fridge_in_tank,
+                fridge_MAX);
+
+    }
+
+    public static void removeFood(double input) {
+
+        food_in_tank = remove(input, food_in_tank);
+
+        displayStorageStatus(
+                "FOOD",
+                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
+                food_protected_unprotected_materials_MAX);
+    }
+
+    public static void removeProtectedMaterials(double input) {
+
+        protected_materials_in_tank = remove(input, protected_materials_in_tank);
+
+        displayStorageStatus(
+                "FOOD",
+                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
+                food_protected_unprotected_materials_MAX);
+    }
+
+    public static void removeUnprotectedMaterials(double input) {
+
+        unprotected_materials_in_tank = remove(input, unprotected_materials_in_tank);
+
+        displayStorageStatus(
+                "FOOD",
+                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
+                food_protected_unprotected_materials_MAX);
+    }
+
     // ---------------------------------------------------------------------
     // GENERALLIZED REMOVE FUNCTIONS------------------------
 
-    public static double remove(double input, double storage_in_tank){
-        if (input<storage_in_tank){
+    public static double remove(double input, double storage_in_tank) {
+        if (input < storage_in_tank) {
             return storage_in_tank - input;
-        }else{
+        } else {
             System.out.println("There is not that much available in the dhoani tank");
             return storage_in_tank;
         }
@@ -208,7 +261,6 @@ public class Dhoani {
 
     // ---------------------------------------------------------------------
     // CONVERTER FUNCTIONS:
-
     // m3 -> Kgs (in 1000)
     public static double meter3_to_kgs(double input) {
         return input * 832;
