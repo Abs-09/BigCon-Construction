@@ -4,222 +4,178 @@ public class Dhoani {
 
     // DEFINING AND INTIALIZING STORAGES in Kgs
     // -----------------------------------
-    static double diesel_in_tank = 0;
-    static double frozen_in_tank = 0;
-    static double fridge_in_tank = 0;
+    double diesel_in_tank = 3328;
+    double frozen_in_tank = 0;
+    double fridge_in_tank = 0;
     // shared storage
-    static double food_in_tank = 0;
-    static double protected_materials_in_tank = 0;
-    static double unprotected_materials_in_tank = 0;
+    double food_in_tank = 0;
+    double protected_materials_in_tank = 0;
+    double unprotected_materials_in_tank = 0;
 
     // DEFINING MAX CAPACITY in Kgs
     // -----------------------------------------------
-    static double diesel_MAX = 3328; // (4)m3 -> kgs
-    static double frozen_MAX = 40;
-    static double fridge_MAX = 50;
-    static double food_protected_unprotected_materials_MAX = 28000;
-    static double dhoani_allowed_max = 30000;
+    double diesel_MAX = 3328; // (4)m3 -> kgs
+    double frozen_MAX = 40;
+    double fridge_MAX = 50;
+    double food_protected_unprotected_materials_MAX = 28000;
+    double dhoani_allowed_max = 30000;
+
+    // For Space Check Functions
+    boolean hasSpace;
+    boolean hasRemaining;
+    // For time check
+    boolean isDay;// 06:00 to 18:00 is considered day time
 
     // ---------------------------------------------------------------------
     // ADD FUNCTIONS: Adds to the rescoures (attribs) after user gives input
     // Please refer below for subfunctions used.
-    public static void addDiesel(double input) {
 
-        diesel_in_tank = add(
-                meter3_to_kgs(input),
-                diesel_in_tank,
-                diesel_MAX);
-
-        displayDieselStatus();
+    public void addDiesel(double input) {
+        diesel_in_tank += meter3_to_kgs(input);
     }
 
-    public static void addFrozen(double input) {
-
-        frozen_in_tank = add(
-                input,
-                frozen_in_tank,
-                frozen_MAX);
-
-        displayStorageStatus(
-                "FROZEN",
-                frozen_in_tank,
-                frozen_MAX);
+    public void addFrozen(double input) {
+        frozen_in_tank += input;
     }
 
-    public static void addFridge(double input) {
-
-        fridge_in_tank = add(
-                input,
-                fridge_in_tank,
-                fridge_MAX);
-
-        displayStorageStatus(
-                "FRIDGE",
-                fridge_in_tank,
-                fridge_MAX);
-
+    public void addFridge(double input) {
+        fridge_in_tank += input;
     }
 
-    public static void addFood(double input) {
-
-        food_in_tank = addShared(
-                input,
-                food_in_tank,
-                food_protected_unprotected_materials_MAX);
-
-        displayStorageStatus(
-                "FOOD",
-                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
-                food_protected_unprotected_materials_MAX);
+    public void addFood(double input) {
+        food_in_tank += input;
     }
 
-    public static void addProtectedMaterials(double input) {
-
-        protected_materials_in_tank = addShared(
-                input,
-                protected_materials_in_tank,
-                food_protected_unprotected_materials_MAX);
-
-        displayStorageStatus(
-                "PROTECTED MATERIALS",
-                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
-                food_protected_unprotected_materials_MAX);
+    public void addProtectedMaterials(double input) {
+        protected_materials_in_tank += input;
     }
 
-    public static void addUnprotectedMaterials(double input) {
-        unprotected_materials_in_tank = addShared(input, unprotected_materials_in_tank,
-                food_protected_unprotected_materials_MAX);
-        displayStorageStatus(
-                "UNPROTECTED MATERIALS",
-                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
-                food_protected_unprotected_materials_MAX);
-    }
-
-    // ---------------------------------------------------------------------
-    // GENERALLIZED ADD FUNCTIONS------------------------
-
-    // This function is used to add diesel, frozen, fridge.
-    private static double add(double input, double storage_in_tank, double MAX) {
-
-        // checks the current time as good can be loaded to Dhoani during day time
-        if (Main.current_time > 18) {
-
-            if (input + storage_in_tank <= MAX && input + dhoaniCurrentTotalMaterials() <= dhoani_allowed_max) {
-
-                System.out.println("Successful!");
-                return input + storage_in_tank;
-
-            } else {
-
-                System.out.println("\nNot enough space!");
-                return storage_in_tank;
-
-            }
-        } else {
-            System.out.println("Its currently night time. Goods can be loaded to the boat during day time");
-            return storage_in_tank;
-        }
-
-    }
-
-    // This function is used to add food, protected, unprotected materials since
-    // they share a common space unit for storage.
-    private static double addShared(double input, double storage_in_tank, double MAX) {
-
-        // calulating total capacity in dhoani (all storages combined)
-        double shared_materials_in_tank = food_in_tank +
-                protected_materials_in_tank +
-                unprotected_materials_in_tank;
-
-        if (Main.current_time < 18) {
-
-            if (input + shared_materials_in_tank <= MAX
-                    && input + dhoaniCurrentTotalMaterials() <= dhoani_allowed_max) {
-
-                System.out.println("Successful!\n");
-                return input + storage_in_tank;
-
-            } else {
-
-                System.out.println("\nNot enough space!");
-                return storage_in_tank;
-
-            }
-
-        } else {
-            System.out.println("Its currently day time. Goods can loaded to the boat during night time");
-        }
-        return input;
+    public void addUnprotectedMaterials(double input) {
+        unprotected_materials_in_tank += input;
     }
 
     // ---------------------------------------------------------------------
     // REMOVE FUNCTIONS: Adds to the rescoures (attribs) after user gives input
     // Please refer below for subfunctions used.
-    public static void removeDiesel(double input) {
-        diesel_in_tank = remove(meter3_to_kgs(input), diesel_in_tank);
-        displayDieselStatus();
+
+    public void removeDiesel(double input) {
+        diesel_in_tank -= meter3_to_kgs(input);
     }
 
-    public static void removeFrozen(double input) {
+    public void removeFrozen(double input) {
+        frozen_in_tank -= input;
+    }
 
-        frozen_in_tank = remove(input, frozen_in_tank);
+    public void removeFridge(double input) {
+        fridge_in_tank -= input;
+    }
 
-        displayStorageStatus(
-                "FROZEN",
+    public void removeFood(double input) {
+        food_in_tank -= input;
+    }
+
+    public void removeProtectedMaterials(double input) {
+        protected_materials_in_tank -= input;
+    }
+
+    public void removeUnprotectedMaterials(double input) {
+        unprotected_materials_in_tank -= input;
+    }
+
+    // ---------------------------------------------------------------------
+    // CHECK SPACE FUNCTIONS: checks whethe space is available
+    // Please refer below for subfunctions used.
+    public boolean isDieselSpaceAvailable(double input) {
+
+        return hasSpace = checkSpace(
+                meter3_to_kgs(input),
+                diesel_in_tank,
+                diesel_MAX);
+
+    }
+
+    public boolean isFrozenSpaceAvailable(double input) {
+
+        return hasSpace = checkSpace(
+                input,
                 frozen_in_tank,
                 frozen_MAX);
     }
 
-    public static void removeFridge(double input) {
+    public boolean isFridgeSpaceAvailable(double input) {
 
-        fridge_in_tank = remove(input, fridge_in_tank);
-
-        displayStorageStatus(
-                "FRIDGE",
+        return hasSpace = checkSpace(
+                input,
                 fridge_in_tank,
                 fridge_MAX);
 
     }
 
-    public static void removeFood(double input) {
+    public boolean checkSharedSpace(double input) {
 
-        food_in_tank = remove(input, food_in_tank);
+        // defining current materials in tank
+        double shared_materials_in_tank = food_in_tank +
+                protected_materials_in_tank +
+                unprotected_materials_in_tank;
 
-        displayStorageStatus(
-                "FOOD",
-                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
-                food_protected_unprotected_materials_MAX);
+        if (input + shared_materials_in_tank <= food_protected_unprotected_materials_MAX
+                && input + dhoaniCurrentTotalMaterials() <= dhoani_allowed_max) {
+            hasSpace = true;
+        } else {
+            hasSpace = false;
+        }
+
+        return hasSpace;
+
     }
 
-    public static void removeProtectedMaterials(double input) {
+    // Generelaized Space Checker------------------------
+    // This function is used to check for diesel, frozen, fridge space.
+    private boolean checkSpace(double input, double storage_in_tank, double MAX) {
 
-        protected_materials_in_tank = remove(input, protected_materials_in_tank);
+        if (input + storage_in_tank <= MAX && input + dhoaniCurrentTotalMaterials() <= dhoani_allowed_max) {
+            return true;
+        } else {
+            return false;
 
-        displayStorageStatus(
-                "FOOD",
-                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
-                food_protected_unprotected_materials_MAX);
-    }
+        }
 
-    public static void removeUnprotectedMaterials(double input) {
-
-        unprotected_materials_in_tank = remove(input, unprotected_materials_in_tank);
-
-        displayStorageStatus(
-                "FOOD",
-                food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank,
-                food_protected_unprotected_materials_MAX);
     }
 
     // ---------------------------------------------------------------------
-    // GENERALLIZED REMOVE FUNCTIONS------------------------
+    // CHECK REMAINING FUNCTION: checks whether there is storage in tank available
+    // as the user demands
+    // Please refer below for subfunctions used.
+    public boolean isDieselAmountRemainingInTank(double input) {
+        return hasRemaining = checkRemaining(meter3_to_kgs(input), diesel_in_tank);
+    }
 
-    public static double remove(double input, double storage_in_tank) {
-        if (input < storage_in_tank) {
-            return storage_in_tank - input;
+    public boolean isFrozenRemainingInTank(double input) {
+        return hasRemaining = checkRemaining(input, frozen_in_tank);
+    }
+
+    public boolean isFridgeRemainingInTank(double input) {
+        return hasRemaining = checkRemaining(input, fridge_in_tank);
+    }
+
+    public boolean isFoodRemainingInTank(double input) {
+        return hasRemaining = checkRemaining(input, food_in_tank);
+    }
+
+    public boolean isProtectedMaterialsRemainingInTank(double input) {
+        return hasRemaining = checkRemaining(input, protected_materials_in_tank);
+    }
+
+    public boolean isUnprotectedMatrialsRemainingInTank(double input) {
+        return hasRemaining = checkRemaining(input, unprotected_materials_in_tank);
+    }
+
+    // Generalized remaining function------------------------
+    public boolean checkRemaining(double input, double storage_in_tank) {
+        if (input <= storage_in_tank) {
+            return true;
         } else {
-            System.out.println("There is not that much available in the dhoani tank");
-            return storage_in_tank;
+            return false;
         }
     }
 
@@ -228,13 +184,13 @@ public class Dhoani {
     // current and MAX Capacity
 
     // To keep track of total weight of dhoani
-    public static double dhoaniCurrentTotalMaterials() {
+    public double dhoaniCurrentTotalMaterials() {
         return diesel_in_tank + frozen_in_tank + fridge_in_tank + food_in_tank + protected_materials_in_tank
                 + unprotected_materials_in_tank;
     }
 
     // displays total dhoani status
-    public static void dhoaniTotalWeightStatus() {
+    public void dhoaniTotalWeightStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI STATUS:");
         System.out.println("Current Total storage in Dhoani: " + dhoaniCurrentTotalMaterials());
@@ -242,7 +198,7 @@ public class Dhoani {
     }
 
     // for all storages except for diesel
-    public static void displayStorageStatus(String storage_name, double storage_in_tank, double MAX) {
+    public void displayStorageStatus(String storage_name, double storage_in_tank, double MAX) {
         System.out.println("--------------------");
         System.out.println("DHOANI " + storage_name + " STATUS:");
         System.out.println("Current In Tank: " + storage_in_tank);
@@ -251,7 +207,7 @@ public class Dhoani {
     }
 
     // for diesel (seperate function since kgs_to_meter3 conversion has to be made)
-    public static void displayDieselStatus() {
+    public void displayDieselStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI DIESEL STATUS:");
         System.out.println("Current In Tank: " + kgs_to_meter3(diesel_in_tank));
@@ -262,12 +218,12 @@ public class Dhoani {
     // ---------------------------------------------------------------------
     // CONVERTER FUNCTIONS:
     // m3 -> Kgs (in 1000)
-    public static double meter3_to_kgs(double input) {
+    public double meter3_to_kgs(double input) {
         return input * 832;
     }
 
     // Kgs (in 1000) -> m3
-    public static double kgs_to_meter3(double input) {
+    public double kgs_to_meter3(double input) {
         return input / 832;
     }
 
