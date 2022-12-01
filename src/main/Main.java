@@ -302,7 +302,7 @@ public class Main {
                     controller.travelToEastIsland();
                     break;
                 case 2:
-                    controller.travelToWesttIsland();
+                    controller.travelToWestIsland();
                     break;
                 case 5:
                     controller.checkCurrentTime();
@@ -322,7 +322,14 @@ public class Main {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        mainMenu(controller);
+        //mainMenu(controller);
+
+        IslandLinkedList islands = new IslandLinkedList();
+
+
+        System.out.println(islands.currentIsland.next.isAnySpaceAvailable());
+
+
         // controller.displayIslandDieselStatus();
         // controller.displayDhoaniDieselStatus();
         // controller.addDieselToIslandFromDhoani(5);

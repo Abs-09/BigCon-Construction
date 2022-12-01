@@ -22,7 +22,6 @@ public class Island {
     double fridge_MAX;
     double food_MAX;
     double protected_materials_MAX;
-    double unprotected_materials_MAX;
 
     // For Space Check Functions
     boolean hasSpace;
@@ -44,8 +43,7 @@ public class Island {
             double frozen_MAX,
             double fridge_MAX,
             double food_MAX,
-            double protected_materials_MAX,
-            double unprotected_materials_MAX) {
+            double protected_materials_MAX) {
         this.name = name;
         this.distanceToPrev = distanceToPrev;
         this.distanceToNext = distanceToNext;
@@ -57,9 +55,9 @@ public class Island {
         this.unprotected_materials_in_tank = unprotected_materials_in_tank;
         this.diesel_MAX = meter3_to_kgs(diesel_MAX);
         this.frozen_MAX = frozen_MAX;
+        this.fridge_MAX = fridge_MAX;
         this.food_MAX = food_MAX;
         this.protected_materials_MAX = protected_materials_MAX;
-        this.unprotected_materials_MAX = unprotected_materials_MAX;
     }
 
     // ---------------------------------------------------------------------
@@ -128,7 +126,6 @@ public class Island {
                 fridge_in_tank == fridge_MAX &&
                 food_in_tank == food_MAX &&
                 protected_materials_in_tank == protected_materials_MAX) {
-            System.out.println("This island is full");
             return false;
         } else {
             return true;
@@ -196,10 +193,6 @@ public class Island {
 
     public boolean isProtectedMaterialsRemainingInTank(double input) {
         return hasRemaining = checkRemaining(input, protected_materials_in_tank);
-    }
-
-    public boolean isUnprotectedMatrialsRemainingInTank(double input) {
-        return hasRemaining = checkRemaining(input, unprotected_materials_in_tank);
     }
 
     // Generalized remaining function------------------------
