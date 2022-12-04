@@ -13,10 +13,70 @@ public class Controller {
     public void consumeDieselFromIsland(double input) {
         if (isDayTime()) {
             System.out.println("Currently day time. Can only be load/unloaded at night");
-        } else if (!islands.currentIsland.isDieselAmountRemainingInTank(input)) {
+        } else if (!islands.currentIsland.isDieselRemainingInTank(input)) {
             System.out.println("space for requested amount not available");
         } else {
             islands.currentIsland.removeDiesel(input);
+            System.out.println("Successfully Consumed");
+        }
+
+    }
+
+    public void consumeFrozenFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isFrozenRemainingInTank(input)) {
+            System.out.println("space for requested amount not available");
+        } else {
+            islands.currentIsland.removeFrozen(input);
+            System.out.println("Successfully Consumed");
+        }
+
+    }
+
+    public void consumeFridgeFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isFridgeRemainingInTank(input)) {
+            System.out.println("space for requested amount not available");
+        } else {
+            islands.currentIsland.removeFridge(input);
+            System.out.println("Successfully Consumed");
+        }
+
+    }
+
+    public void consumeFoodFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isFoodRemainingInTank(input)) {
+            System.out.println("space for requested amount not available");
+        } else {
+            islands.currentIsland.removeFood(input);
+            System.out.println("Successfully Consumed");
+        }
+
+    }
+
+    public void consumeProtectedMaterialsFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isProtectedMaterialsRemainingInTank(input)) {
+            System.out.println("space for requested amount not available");
+        } else {
+            islands.currentIsland.removeProtectedMaterials(input);
+            System.out.println("Successfully Consumed");
+        }
+
+    }
+
+    public void consumeUnprotectedMaterialsFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isUnprotectedMaterialsRemainingInTank(input)) {
+            System.out.println("space for requested amount not available");
+        } else {
+            islands.currentIsland.removeUnprotectedMaterials(input);
             System.out.println("Successfully Consumed");
         }
 
@@ -50,11 +110,76 @@ public class Controller {
             System.out.println("Currently day time. Can only be load/unloaded at night");
         } else if (!dhoani.isDieselSpaceAvailable(input)) {
             System.out.println("Space not available for the requested amount");
-        } else if (!islands.currentIsland.isDieselAmountRemainingInTank(input)) {
+        } else if (!islands.currentIsland.isDieselRemainingInTank(input)) {
             System.out.println("Requested amount not available in tank");
         } else {
             islands.currentIsland.removeDiesel(input);
             dhoani.addDiesel(input);
+        }
+    }
+
+    public void addFrozenToDhoaniFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!dhoani.isFrozenSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!islands.currentIsland.isFrozenRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.removeFrozen(input);
+            dhoani.addFrozen(input);
+        }
+    }
+
+    public void addFridgeToDhoaniFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!dhoani.isFridgeSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!islands.currentIsland.isFridgeRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.removeFridge(input);
+            dhoani.addFridge(input);
+        }
+    }
+
+    public void addFoodToDhoaniFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!dhoani.isSharedSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!islands.currentIsland.isFoodRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.removeFood(input);
+            dhoani.addFood(input);
+        }
+    }
+
+    public void addProtectedMaterialsToDhoaniFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!dhoani.isSharedSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!islands.currentIsland.isProtectedMaterialsRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.removeProtectedMaterials(input);
+            dhoani.addProtectedMaterials(input);
+        }
+    }
+
+    public void addUnprotectedMaterialsToDhoaniFromIsland(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!dhoani.isSharedSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!islands.currentIsland.isUnprotectedMaterialsRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.removeUnprotectedMaterials(input);
+            dhoani.addUnprotectedMaterials(input);
         }
     }
 
@@ -64,11 +189,74 @@ public class Controller {
             System.out.println("Currently day time. Can only be load/unloaded at night");
         } else if (!islands.currentIsland.isDieselSpaceAvailable(input)) {
             System.out.println("Space not available for the requested amount");
-        } else if (!dhoani.isDieselAmountRemainingInTank(input)) {
+        } else if (!dhoani.isDieselRemainingInTank(input)) {
             System.out.println("Requested amount not available in tank");
         } else {
             islands.currentIsland.addDiesel(input);
             dhoani.removeDiesel(input);
+        }
+    }
+
+    public void addFrozenToIslandFromDhoani(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isFrozenSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!dhoani.isFrozenRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.addFrozen(input);
+            dhoani.removeFrozen(input);
+        }
+    }
+
+    public void addFridgeToIslandFromDhoani(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isFridgeSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!dhoani.isFridgeRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.addFridge(input);
+            dhoani.removeFridge(input);
+        }
+    }
+
+    public void addFoodToIslandFromDhoani(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isFoodSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!dhoani.isFoodRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.addFood(input);
+            dhoani.removeFood(input);
+        }
+    }
+
+    public void addProtectedMaterialsToIslandFromDhoani(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!islands.currentIsland.isProtectedMaterialsSpaceAvailable(input)) {
+            System.out.println("Space not available for the requested amount");
+        } else if (!dhoani.isProtectedMaterialsRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.addProtectedMaterials(input);
+            dhoani.removeProtectedMaterials(input);
+        }
+    }
+
+    public void addUnprotectedMaterialsToIslandFromDhoani(double input) {
+        if (isDayTime()) {
+            System.out.println("Currently day time. Can only be load/unloaded at night");
+        } else if (!dhoani.isUnprotectedMaterialsRemainingInTank(input)) {
+            System.out.println("Requested amount not available in tank");
+        } else {
+            islands.currentIsland.addUnprotectedMaterials(input);
+            dhoani.removeUnprotectedMaterials(input);
         }
     }
 
@@ -84,7 +272,7 @@ public class Controller {
     public void removeDieselFromDhoani(double input) {
         if (isDayTime()) {
             System.out.println("Currently day time. Can only be load/unloaded at night");
-        } else if (dhoani.isDieselAmountRemainingInTank(input)) {
+        } else if (dhoani.isDieselRemainingInTank(input)) {
             System.out.println("Currently day time. Can only be load/unloaded at night");
         } else {
             dhoani.removeDiesel(input);
@@ -95,13 +283,14 @@ public class Controller {
     public void travelToEastIsland() {
 
         if (!isDayTime()) {
-            System.out.println("Currently " + Main.current_time + ", Dhoani can travel between 6am to 6pm");
+            System.out.println("Currently " + Main.current_time_in_minutes/60 + ", Dhoani can travel between 6am to 6pm");
         } else if (islands.currentIsland.next == null) {
             System.out.println("Cannnot travel further east");
-        } else if (islands.currentIsland.next.isAnySpaceAvailable()) {
+        } else if (!islands.currentIsland.next.isAnySpaceAvailable()) {
             System.out.println("No Space available at next island");
         } else {
             SkipHours(islands.moveEast());
+            islands.checkRemainingIslandsToEastThatCanBeReachedDuringDayTime();
         }
 
     }
@@ -109,13 +298,14 @@ public class Controller {
     public void travelToWestIsland() {
 
         if (!isDayTime()) {
-            System.out.println("Currently " + Main.current_time + ", Dhoani can travel between 6am to 6pm");
+            System.out.println("Currently " + Main.current_time_in_minutes/60 + ", Dhoani can travel between 6am to 6pm");
         } else if (islands.currentIsland.prev == null) {
-            System.out.println("No");
-        } else if (islands.currentIsland.prev.isAnySpaceAvailable()) {
+            System.out.println("Cannot Travel further west");
+        } else if (!islands.currentIsland.prev.isAnySpaceAvailable()) {
             System.out.println("No Space available at next island");
         } else {
             SkipHours(islands.moveWest());
+            islands.checkRemainingIslandsToWestThatCanBeReachedDuringDayTime();
         }
 
     }
@@ -139,11 +329,12 @@ public class Controller {
     // TIME CHECK FUNCTIONS: function to check whether its currently day or night
 
     public void checkCurrentTime() {
-        System.out.println("Current Time: " + Main.current_time);
+        double current_time_in_hours = Main.current_time_in_minutes /60;
+        System.out.println("Current Time: " + current_time_in_hours);
     }
 
     public boolean isDayTime() {
-        if (Main.current_time >= 6 && Main.current_time <= 18) {
+        if (Main.current_time_in_minutes >= 360 && Main.current_time_in_minutes <= 1080) {
             return true;
         } else {
             return false;
@@ -151,7 +342,8 @@ public class Controller {
     }
 
     public void SkipHours(double hours) {
-        Main.current_time = (Main.current_time + hours) % 24;
+        double minutes = hours * 60;
+        Main.current_time_in_minutes = (Main.current_time_in_minutes + minutes) % 1440;
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static double current_time = 17;
+    static double current_time_in_minutes = 840;
 
     // PRINT MENU OPTIONS a custom function done to print array menu
     public static void printMenu(String[] options) {
@@ -320,22 +320,37 @@ public class Main {
 
     }
 
+    public static void displayTime(){
+        double currentTime = Main.current_time_in_minutes / 60;
+        System.out.println(currentTime);
+    }
+
     public static void main(String[] args) {
         Controller controller = new Controller();
         // mainMenu(controller);
 
-        System.out.println(Main.current_time);
-        controller.SkipHours(3.2);
-        System.out.println(Main.current_time);
-        controller.SkipHours(4.2);
-        System.out.println(Main.current_time);
 
-        // IslandLinkedList islands = new IslandLinkedList();
 
-        // System.out.println(islands.currentIsland.name);
-        // islands.test();
-        // System.out.println(islands.currentIsland.next.isAnySpaceAvailable());
+        // System.out.println(Main.current_time);
+        // controller.SkipHours(3);
+        // System.out.println(Main.current_time);
+        // controller.SkipHours(4);
+        // System.out.println(Main.current_time);
 
+        
+        IslandLinkedList islands = new IslandLinkedList();
+        controller.checkCurrentIsland();
+        controller.checkCurrentTime();
+
+        controller.travelToEastIsland();
+        controller.checkCurrentIsland();
+        controller.checkCurrentTime();
+
+        controller.travelToEastIsland();
+        controller.checkCurrentIsland();
+        controller.checkCurrentTime();
+
+        
         // controller.displayIslandDieselStatus();
         // controller.displayDhoaniDieselStatus();
         // controller.addDieselToIslandFromDhoani(5);

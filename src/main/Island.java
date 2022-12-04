@@ -2,8 +2,8 @@ package src.main;
 
 public class Island {
     String name;
-    int distanceToPrev;
-    int distanceToNext;
+    double distanceToPrev;
+    double distanceToNext;
     Island next;
     Island prev;
     // DEFINING AND INTIALIZING STORAGES in Kgs
@@ -31,8 +31,8 @@ public class Island {
     // constructor
     public Island(
             String name,
-            int distanceToPrev,
-            int distanceToNext,
+            double distanceToPrev,
+            double distanceToNext,
             double diesel_in_tank,
             double frozen_in_tank,
             double fridge_in_tank,
@@ -158,6 +158,25 @@ public class Island {
 
     }
 
+    public boolean isFoodSpaceAvailable(double input) {
+
+        return hasSpace = checkSpace(
+                input,
+                food_in_tank,
+                food_MAX);
+
+    }
+
+    public boolean isProtectedMaterialsSpaceAvailable(double input) {
+
+        return hasSpace = checkSpace(
+                input,
+                protected_materials_in_tank,
+                protected_materials_MAX);
+
+    }
+
+
     // Generelaized Space Checker------------------------
     // This function is used to check for diesel, frozen, fridge space.
     private boolean checkSpace(double input, double storage_in_tank, double MAX) {
@@ -175,7 +194,7 @@ public class Island {
     // CHECK REMAINING FUNCTION: checks whether there is storage in tank available
     // as the user demands
     // Please refer below for subfunctions used.
-    public boolean isDieselAmountRemainingInTank(double input) {
+    public boolean isDieselRemainingInTank(double input) {
         return hasRemaining = checkRemaining(meter3_to_kgs(input), diesel_in_tank);
     }
 
@@ -193,6 +212,10 @@ public class Island {
 
     public boolean isProtectedMaterialsRemainingInTank(double input) {
         return hasRemaining = checkRemaining(input, protected_materials_in_tank);
+    }
+
+    public boolean isUnprotectedMaterialsRemainingInTank(double input) {
+        return hasRemaining = checkRemaining(input, unprotected_materials_in_tank);
     }
 
     // Generalized remaining function------------------------
@@ -223,6 +246,41 @@ public class Island {
         System.out.println("ISLAND DIESEL STATUS:");
         System.out.println("Current In Tank: " + kgs_to_meter3(diesel_in_tank));
         System.out.println("Maximum Capacity: " + kgs_to_meter3(diesel_MAX));
+    }
+
+    public void displayFrozenStatus() {
+        System.out.println("--------------------");
+        System.out.println("ISLAND FROZEN STATUS:");
+        System.out.println("Current In Tank: " + frozen_in_tank);
+        System.out.println("Maximum Capacity: " + frozen_MAX);
+    }
+
+    public void displayFridgeStatus() {
+        System.out.println("--------------------");
+        System.out.println("ISLAND FRIDGE STATUS:");
+        System.out.println("Current In Tank: " + fridge_in_tank);
+        System.out.println("Maximum Capacity: " + fridge_MAX);
+    }
+
+    public void displayFoodStatus() {
+        System.out.println("--------------------");
+        System.out.println("ISLAND FOOD STATUS:");
+        System.out.println("Current In Tank: " + food_in_tank);
+        System.out.println("Maximum Capacity: " + food_MAX);
+    }
+
+    public void displayProtectedMaterialsStatus() {
+        System.out.println("--------------------");
+        System.out.println("ISLAND PROTECTED MATERIALS STATUS:");
+        System.out.println("Current In Tank: " + protected_materials_in_tank);
+        System.out.println("Maximum Capacity: " + protected_materials_MAX);
+    }
+
+    public void displayUnprotectedMaterialsStatus() {
+        System.out.println("--------------------");
+        System.out.println("ISLAND UNPROTECTED MATERIALS STATUS:");
+        System.out.println("Current In Tank: " + unprotected_materials_in_tank);
+        System.out.println("Maximum Capacity: " + "Infinite");
     }
 
     // ---------------------------------------------------------------------
