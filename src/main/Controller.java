@@ -260,6 +260,7 @@ public class Controller {
         }
     }
 
+    //DISPLAY STATUS
     public void displayIslandDieselStatus() {
         islands.currentIsland.displayDieselStatus();
     }
