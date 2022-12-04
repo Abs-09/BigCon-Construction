@@ -93,12 +93,12 @@ public class Controller {
 
     // TRAVEL FUNCTIONS
     public void travelToEastIsland() {
-        
+
         if (!isDayTime()) {
             System.out.println("Currently " + Main.current_time + ", Dhoani can travel between 6am to 6pm");
-        } else if(islands.currentIsland.next == null){
+        } else if (islands.currentIsland.next == null) {
             System.out.println("Cannnot travel further east");
-        } else if(islands.currentIsland.next.isAnySpaceAvailable()) {
+        } else if (islands.currentIsland.next.isAnySpaceAvailable()) {
             System.out.println("No Space available at next island");
         } else {
             SkipHours(islands.moveEast());
@@ -110,9 +110,9 @@ public class Controller {
 
         if (!isDayTime()) {
             System.out.println("Currently " + Main.current_time + ", Dhoani can travel between 6am to 6pm");
-        } else if(islands.currentIsland.prev == null){
+        } else if (islands.currentIsland.prev == null) {
             System.out.println("No");
-        } else if(islands.currentIsland.prev.isAnySpaceAvailable()) {
+        } else if (islands.currentIsland.prev.isAnySpaceAvailable()) {
             System.out.println("No Space available at next island");
         } else {
             SkipHours(islands.moveWest());
@@ -150,7 +150,7 @@ public class Controller {
         }
     }
 
-    public void SkipHours(int hours) {
+    public void SkipHours(double hours) {
         Main.current_time = (Main.current_time + hours) % 24;
     }
 
