@@ -9,7 +9,7 @@ public class IslandLinkedList {
         Island islandD;
         Island islandSupply2;
         Island currentIsland; // pointer
-        Island testIsland; 
+        Island testIsland;
         final static double DHOANI_SPEED = 25;
 
         // Constructor
@@ -19,7 +19,7 @@ public class IslandLinkedList {
                 this.islandSupply1 = new Island("Island Supplier 1", 0, 50, 50, 1000, 1000, 1000,
                                 1000, 1000, 100, 1000, 1000, 1000, 1000);
                 this.islandA = new Island("Island A", 50, 80, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.1, 10);
-                this.islandB = new Island("Island B", 80, 60, 4, 0.04, 0.05, 0.09, 11, 1000,
+                this.islandB = new Island("Island B", 80, 60, 4, 0.04, 0.04, 0.09, 11, 1000,
                                 4, 0.04, 0.05, 0.09, 11);
                 this.islandC = new Island("Island C", 60, 40, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.11, 9);
                 this.islandD = new Island("Island D", 40, 70, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.08, 9);
@@ -64,7 +64,8 @@ public class IslandLinkedList {
                 return hoursTaken;
         }
 
-        //Function to check remaining islands that can be reached during day time and the time taken
+        // Function to check remaining islands that can be reached during day time and
+        // the time taken
         public void checkRemainingIslandsToEastThatCanBeReachedDuringDayTime() {
 
                 double current_time = Main.current_time_in_minutes;
@@ -74,40 +75,45 @@ public class IslandLinkedList {
                 double totalTimeInHours = 0;
                 double totalTimeInMinutes = 0;
 
-                //The current island object will be put to the test island since no actual value of currentisland should change
+                // The current island object will be put to the test island since no actual
+                // value of currentisland should change
                 testIsland = currentIsland;
 
-                //The loop is to check if an end island (suppliers island) is reached
+                // The loop is to check if an end island (suppliers island) is reached
                 while (testIsland.next != null) {
 
-                        //The if condition checks for day time - when dhoani is allowed to travel
+                        // The if condition checks for day time - when dhoani is allowed to travel
                         if (current_time >= 360 && current_time <= 1080) {
-                                
-                                counter++; //islland counter
-                                hours = testIsland.distanceToNext / DHOANI_SPEED; //getting hours by dividing it with dhoani speed
-                                minutes = hours * 60; 
+
+                                counter++; // islland counter
+                                hours = testIsland.distanceToNext / DHOANI_SPEED; // getting hours by dividing it with
+                                                                                  // dhoani speed
+                                minutes = hours * 60;
 
                                 totalTimeInHours = totalTimeInHours + hours;
                                 totalTimeInMinutes = totalTimeInMinutes + minutes;
-                                
+
                                 testIsland = testIsland.next;
                                 current_time += minutes;
-                                
+
                         } else {
-                                
+
                                 break;
                         }
-                        
+
                 }
 
                 System.out.println("Number of east islands that can be reached during day time: " + counter);
                 System.out.println("Furthest East Island that can be traveled during day time: " + testIsland.name);
-                System.out.println("Total time in hours that will take to reach the furthest island: " + totalTimeInHours);
-                System.out.println("Total time in Minutes that will take to reach the furthest island: " + totalTimeInMinutes);
+                System.out.println(
+                                "Total time in hours that will take to reach the furthest island: " + totalTimeInHours);
+                System.out.println("Total time in Minutes that will take to reach the furthest island: "
+                                + totalTimeInMinutes);
 
         }
 
-        //Function to check remaining islands that can be reached during day time and the time taken
+        // Function to check remaining islands that can be reached during day time and
+        // the time taken
         public void checkRemainingIslandsToWestThatCanBeReachedDuringDayTime() {
 
                 double current_time = Main.current_time_in_minutes;
@@ -117,36 +123,40 @@ public class IslandLinkedList {
                 double totalTimeInHours = 0;
                 double totalTimeInMinutes = 0;
 
-                //The current island object will be put to the test island since no actual value of currentisland should change
+                // The current island object will be put to the test island since no actual
+                // value of currentisland should change
                 testIsland = currentIsland;
 
-                //The loop is to check if an end island (suppliers island) is reached
+                // The loop is to check if an end island (suppliers island) is reached
                 while (testIsland.prev != null) {
 
-                        //The if condition checks for day time - when dhoani is allowed to travel
+                        // The if condition checks for day time - when dhoani is allowed to travel
                         if (current_time >= 360 && current_time <= 1080) {
-                                
-                                counter++; //islland counter
-                                hours = testIsland.distanceToNext / DHOANI_SPEED; //getting hours by dividing it with dhoani speed
-                                minutes = hours * 60; 
+
+                                counter++; // islland counter
+                                hours = testIsland.distanceToNext / DHOANI_SPEED; // getting hours by dividing it with
+                                                                                  // dhoani speed
+                                minutes = hours * 60;
 
                                 totalTimeInHours = totalTimeInHours + hours;
                                 totalTimeInMinutes = totalTimeInMinutes + minutes;
-                                
+
                                 testIsland = testIsland.prev;
                                 current_time += minutes;
-                                
+
                         } else {
-                                
+
                                 break;
                         }
-                        
+
                 }
 
                 System.out.println("Number of west islands that can be reached during day time: " + counter);
                 System.out.println("Furthest West Island that can be traveled during day time: " + testIsland.name);
-                System.out.println("Total time in hours that will take to reach the furthest island: " + totalTimeInHours);
-                System.out.println("Total time in Minutes that will take to reach the furthest island: " + totalTimeInMinutes);
+                System.out.println(
+                                "Total time in hours that will take to reach the furthest island: " + totalTimeInHours);
+                System.out.println("Total time in Minutes that will take to reach the furthest island: "
+                                + totalTimeInMinutes);
 
         }
 }

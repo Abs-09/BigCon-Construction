@@ -21,11 +21,12 @@ public class Main {
         // FRONT END
         String[] options = {
                 "\nMAIN MENU",
-                "0-Consume Items from Island Warehouse",
+                "1-Consume Items from Island Warehouse",
                 "2-Add Items to Dhoani from Island warehouse",
                 "3-Add Items to Island Warehouse from Dhoani",
+                "4-View Storage",
                 "5-Travel",
-                "6-Exit System",
+                "0-Exit System",
         };
 
         // BACKEND
@@ -35,31 +36,26 @@ public class Main {
             printMenu(options);
             selection = scan.nextInt();
             switch (selection) {
-
-                case 0:
-                    consumeFromIslandMenu(controller);
-                    break;
                 case 1:
-                    // addToDhoaniMenu(controller);
-                    // break;
-                    // case 2:
-                    // addToIslandMenu(controller);
-                    // break;
+                    consumeFromIslandMenu(controller);
                 case 2:
                     addToDhoaniFromIslandMenu(controller);
                     break;
                 case 3:
                     addToIslandFromDhoaniMenu(controller);
                     break;
+                case 4:
+                    // display menu
+                    break;
                 case 5:
                     travelMenu(controller);
                     break;
-                case 6:
+                case 0:
                     break;
                 default:
                     System.out.println("Invalid Option");
             }
-        } while (selection != 5);
+        } while (selection != 0);
         scan.close();
         System.out.println("System Exited");
     }
@@ -69,14 +65,14 @@ public class Main {
         // FRONT END
         String[] options = {
                 "\nCONSUME FROM ISLAND",
-                "0-Consume Diesel from Island",
-                "1-Consume Frozen from Island",
-                "2-Consume Fridge from Island",
-                "3-Consume Food from Island",
-                "4-Consume Protected Materials from Island",
-                "5-Consume Unprotected Materials from Island",
-                "6-Check Island Status",
-                "7-BACK",
+                "1-Consume Diesel from Island",
+                "2-Consume Frozen from Island",
+                "3-Consume Fridge from Island",
+                "4-Consume Food from Island",
+                "5-Consume Protected Materials from Island",
+                "6-Consume Unprotected Materials from Island",
+                "7-Check Island Status",
+                "0-BACK",
         };
 
         // BACKEND
@@ -87,20 +83,29 @@ public class Main {
             selection = scan.nextInt();
             double input;
             switch (selection) {
-                case 0:
+                case 1:
                     System.out.println("Please enter the amount of diesel to be Consumed");
                     input = scan.nextInt();
                     controller.consumeDieselFromIsland(input);
                     break;
-
-                case 6:
-                    controller.displayIslandStatus();
+                case 2:
+                    System.out.println("Please enter the amount of frozen to be Consumed");
+                    input = scan.nextInt();
+                    controller.consumeFrozenFromIsland(input);
+                    break;
+                case 3:
+                    System.out.println("Please enter the amount of Fridge to be Consumed");
+                    input = scan.nextInt();
+                    controller.consumeDieselFromIsland(input);
                     break;
                 case 7:
+                    controller.displayIslandStatus();
+                    break;
+                case 0:
                     break;
 
             }
-        } while (selection != 7);
+        } while (selection != 0);
         scan.nextLine();
 
     }
@@ -192,15 +197,15 @@ public class Main {
         // FRONT END
         String[] options = {
                 "\nADD TO DHOANI FROM ISLAND MENU",
-                "0-Add Diesel to dhoani from island",
-                "1-Add Frozen to dhoani from island",
-                "2-Add Fridge to dhoani from island",
-                "3-Add Food to dhoani from island",
-                "4-Add Protected Materials to dhoani from island",
-                "5-Add Uprotected Materials to dhoani from island",
-                "6-Check Dhoani Status",
-                "7-Check Island Status",
-                "8-BACK",
+                "1-Add Diesel to dhoani from island",
+                "2-Add Frozen to dhoani from island",
+                "3-Add Fridge to dhoani from island",
+                "4-Add Food to dhoani from island",
+                "5-Add Protected Materials to dhoani from island",
+                "6-Add Uprotected Materials to dhoani from island",
+                "7-Check Dhoani Status",
+                "8-Check Island Status",
+                "0-BACK",
         };
 
         // BACKEND
@@ -211,21 +216,21 @@ public class Main {
             selection = scan.nextInt();
             double input;
             switch (selection) {
-                case 0:
+                case 1:
                     System.out.print("Please select the amount: ");
                     input = scan.nextDouble();
                     controller.addDieselToDhoaniFromIsland(input);
                     break;
-                case 6:
+                case 7:
                     controller.displayDhoaniStatus();
                     break;
-                case 7:
+                case 8:
                     controller.displayIslandStatus();
                     break;
-                case 8:
+                case 0:
                     break;
             }
-        } while (selection != 8);
+        } while (selection != 0);
         scan.nextLine();
 
     }
@@ -234,15 +239,15 @@ public class Main {
         // FRONT END
         String[] options = {
                 "\nADD TO ISLAND FROM DHOANI MENU",
-                "0-Add Diesel to Island from Dhoani",
-                "1-Add Frozen to Island from Dhoani",
-                "2-Add Fridge to Island from Dhoani",
-                "3-Add Food to Island from Dhoani",
-                "4-Add Protected Materials to Island from Dhoani",
-                "5-Add Uprotected Materials to Island from Dhoani",
-                "6-Check Dhoani Status",
-                "7-Check Island Status",
-                "8-BACK",
+                "1-Add Diesel to Island from Dhoani",
+                "2-Add Frozen to Island from Dhoani",
+                "3-Add Fridge to Island from Dhoani",
+                "4-Add Food to Island from Dhoani",
+                "5-Add Protected Materials to Island from Dhoani",
+                "6-Add Uprotected Materials to Island from Dhoani",
+                "7-Check Dhoani Status",
+                "8-Check Island Status",
+                "0-BACK",
         };
 
         // BACKEND
@@ -253,38 +258,39 @@ public class Main {
             selection = scan.nextInt();
             double input;
             switch (selection) {
-                case 0:
+                case 1:
                     System.out.print("Please select the amount: ");
                     input = scan.nextDouble();
                     controller.addDieselToIslandFromDhoani(input);
                     break;
-                case 6:
+                case 7:
                     controller.displayDhoaniStatus();
                     break;
-                case 7:
+                case 8:
                     controller.displayIslandStatus();
                     break;
-                case 8:
+                case 0:
                     break;
 
             }
-        } while (selection != 6);
+        } while (selection != 0);
         scan.nextLine();
 
     }
 
     public static void travelMenu(Controller controller) {
+
         // FRONT END
         String[] options = {
                 "\nTRAVEL MENU",
-                "0-Check Current Island",
-                "1-Travel East",
-                "2-Travel West",
-                "3-Check Remaining East Islands to Travel",
-                "4-Check Remaining West Islands to Travel",
-                "5-Check Current Time",
-                "6-Skip Time",
-                "7-BACK",
+                "1-Check Current Island",
+                "2-Travel East",
+                "3-Travel West",
+                "4-Check Remaining East Islands to Travel",
+                "5-Check Remaining West Islands to Travel",
+                "6-Check Current Time",
+                "7-Skip Time",
+                "0-BACK",
         };
 
         // BACKEND
@@ -295,41 +301,46 @@ public class Main {
             selection = scan.nextInt();
             int input;
             switch (selection) {
-                case 0:
+                case 1:
                     controller.checkCurrentIsland();
                     break;
-                case 1:
+                case 2:
                     controller.travelToEastIsland();
                     break;
-                case 2:
+                case 3:
                     controller.travelToWestIsland();
                     break;
+                case 4:
+                    controller.islands.checkRemainingIslandsToEastThatCanBeReachedDuringDayTime();
+                    break;
                 case 5:
-                    controller.checkCurrentTime();
+                    controller.islands.checkRemainingIslandsToWestThatCanBeReachedDuringDayTime();
                     break;
                 case 6:
+                    controller.checkCurrentTime();
+                    break;
+                case 7:
                     System.out.print("How many hours would you like to skip?");
                     input = scan.nextInt();
                     controller.SkipHours(input);
                     break;
-                case 7:
+                case 0:
+                    break;
 
             }
-        } while (selection != 7);
+        } while (selection != 0);
         scan.nextLine();
 
     }
 
-    public static void displayTime(){
+    public static void displayTime() {
         double currentTime = Main.current_time_in_minutes / 60;
         System.out.println(currentTime);
     }
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        // mainMenu(controller);
-
-
+        mainMenu(controller);
 
         // System.out.println(Main.current_time);
         // controller.SkipHours(3);
@@ -337,20 +348,18 @@ public class Main {
         // controller.SkipHours(4);
         // System.out.println(Main.current_time);
 
-        
-        IslandLinkedList islands = new IslandLinkedList();
-        controller.checkCurrentIsland();
-        controller.checkCurrentTime();
+        // IslandLinkedList islands = new IslandLinkedList();
+        // controller.checkCurrentIsland();
+        // controller.checkCurrentTime();
 
-        controller.travelToEastIsland();
-        controller.checkCurrentIsland();
-        controller.checkCurrentTime();
+        // controller.travelToEastIsland();
+        // controller.checkCurrentIsland();
+        // controller.checkCurrentTime();
 
-        controller.travelToEastIsland();
-        controller.checkCurrentIsland();
-        controller.checkCurrentTime();
+        // controller.travelToEastIsland();
+        // controller.checkCurrentIsland();
+        // controller.checkCurrentTime();
 
-        
         // controller.displayIslandDieselStatus();
         // controller.displayDhoaniDieselStatus();
         // controller.addDieselToIslandFromDhoani(5);
