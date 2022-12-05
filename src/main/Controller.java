@@ -257,7 +257,7 @@ public class Controller {
         } else {
             islands.currentIsland.addUnprotectedMaterials(input);
             dhoani.removeUnprotectedMaterials(input);
-        }
+        } 
     }
 
     //DISPLAY STATUS

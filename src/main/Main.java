@@ -38,6 +38,7 @@ public class Main {
             switch (selection) {
                 case 1:
                     consumeFromIslandMenu(controller);
+                    break;
                 case 2:
                     addToDhoaniFromIslandMenu(controller);
                     break;
@@ -85,17 +86,17 @@ public class Main {
             switch (selection) {
                 case 1:
                     System.out.println("Please enter the amount of diesel to be Consumed");
-                    input = scan.nextInt();
+                    input = scan.nextDouble();
                     controller.consumeDieselFromIsland(input);
                     break;
                 case 2:
                     System.out.println("Please enter the amount of frozen to be Consumed");
-                    input = scan.nextInt();
+                    input = scan.nextDouble();
                     controller.consumeFrozenFromIsland(input);
                     break;
                 case 3:
                     System.out.println("Please enter the amount of Fridge to be Consumed");
-                    input = scan.nextInt();
+                    input = scan.nextDouble();
                     controller.consumeDieselFromIsland(input);
                     break;
                 case 7:
