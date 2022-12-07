@@ -19,7 +19,7 @@ public class IslandLinkedList {
                 this.islandSupply1 = new Island("Island Supplier 1", 0, 50, 50, 1000, 1000, 1000,
                                 1000, 1000, 100, 1000, 1000, 1000, 1000);
                 this.islandA = new Island("Island A", 50, 80, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.1, 10);
-                this.islandB = new Island("Island B", 80, 60, 4, 0.04, 0.04, 0.09, 11, 1000,
+                this.islandB = new Island("Island B", 80, 60, 4, 0.04, 0.05, 0.09, 11, 1000,
                                 4, 0.04, 0.05, 0.09, 11);
                 this.islandC = new Island("Island C", 60, 40, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.11, 9);
                 this.islandD = new Island("Island D", 40, 70, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.08, 9);
@@ -50,11 +50,20 @@ public class IslandLinkedList {
                 this.currentIsland = this.islandSupply1;
         }
 
-        public double moveEast() {
+        public double moveEast(double n) {
+
+                double hoursTaken;
+                double totalHoursTaken = 0;
+
                 System.out.println("Moving East");
-                double hoursTaken = currentIsland.distanceToNext / DHOANI_SPEED;
-                currentIsland = currentIsland.next;
-                return hoursTaken;
+
+                for (int i = 0; i < n; i++ ){
+                        hoursTaken = currentIsland.distanceToNext / DHOANI_SPEED;
+                        currentIsland = currentIsland.next;
+                        totalHoursTaken += hoursTaken;
+                }
+                
+                return totalHoursTaken;
         }
 
         public double moveWest() {
@@ -62,6 +71,42 @@ public class IslandLinkedList {
                 double hoursTaken = currentIsland.distanceToPrev / DHOANI_SPEED;
                 currentIsland = currentIsland.prev;
                 return hoursTaken;
+        }
+
+        public double[] validateNextIslandThatCanBeTraveledEast() {
+                double counter = 0;
+                double hours = 0;
+                double minutes = 0;
+                double totalTimeInHours = 0;
+                double totalTimeInMinutes = 0;
+
+                double[] array = new double[2];
+
+                testIsland = currentIsland;
+                // System.out.println(testIsland.next.isAnySpaceAvailable());
+                while (testIsland.next != null) {
+
+                        counter++;
+                        hours = testIsland.distanceToNext / DHOANI_SPEED; // getting hours by dividing it with dhoani speed
+                        minutes = hours * 60;
+                        testIsland = testIsland.next;
+                        totalTimeInHours = totalTimeInHours + hours;
+                        totalTimeInMinutes = totalTimeInMinutes + minutes;
+                        if(testIsland.isAnySpaceAvailable()){   
+                                break;
+                        }
+                        
+                }
+
+                System.out.println("counter: " + counter);
+                System.out.println("Next East Island that can be reached: " + testIsland.name);
+                System.out.println("Total time taken to reach Next East Island: " + totalTimeInHours);
+                System.out.println("Total time in Minutes to reach Next East Island: " + totalTimeInMinutes);
+
+                array[0] = counter;
+                array[1] = totalTimeInMinutes;
+
+                return array;
         }
 
         // Function to check remaining islands that can be reached during day time and

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static double current_time_in_minutes = 840;
+    static double current_time_in_minutes = 480;
 
     // PRINT MENU OPTIONS a custom function done to print array menu
     public static void printMenu(String[] options) {
@@ -341,7 +341,11 @@ public class Main {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        mainMenu(controller);
+        // mainMenu(controller);
+
+        System.out.println("Current Island: "+controller.islands.currentIsland.name);
+        controller.travelToEastIsland();
+        //controller.islands.validateNextIslandThatCanBeTraveledEast();
 
         // System.out.println(Main.current_time);
         // controller.SkipHours(3);
