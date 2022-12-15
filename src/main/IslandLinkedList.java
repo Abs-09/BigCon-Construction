@@ -57,24 +57,35 @@ public class IslandLinkedList {
 
                 System.out.println("Moving East");
 
-                for (int i = 0; i < n; i++ ){
+                for (int i = 0; i < n; i++) {
                         hoursTaken = currentIsland.distanceToNext / DHOANI_SPEED;
                         currentIsland = currentIsland.next;
                         totalHoursTaken += hoursTaken;
                 }
-                
+
                 return totalHoursTaken;
         }
 
-        public double moveWest() {
+        public double moveWest(double n) {
+
+                double hoursTaken;
+                double totalHoursTaken = 0;
+
                 System.out.println("Moving West");
-                double hoursTaken = currentIsland.distanceToPrev / DHOANI_SPEED;
-                currentIsland = currentIsland.prev;
-                return hoursTaken;
+
+                for (int i = 0; i < n; i++) {
+                        hoursTaken = currentIsland.distanceToPrev / DHOANI_SPEED;
+                        currentIsland = currentIsland.prev;
+                        totalHoursTaken += hoursTaken;
+                }
+
+                return totalHoursTaken;
         }
 
+        // check the next island with space available
         public double[] validateNextIslandThatCanBeTraveledEast() {
-                double counter = 0;
+
+                double numberOfIslandsAhead = 0;
                 double hours = 0;
                 double minutes = 0;
                 double totalTimeInHours = 0;
@@ -82,30 +93,80 @@ public class IslandLinkedList {
 
                 double[] array = new double[2];
 
+                // A test pointer is (testIsland) is used to travese the island
                 testIsland = currentIsland;
-                // System.out.println(testIsland.next.isAnySpaceAvailable());
-                while (testIsland.next != null) {
 
-                        counter++;
-                        hours = testIsland.distanceToNext / DHOANI_SPEED; // getting hours by dividing it with dhoani speed
+                while (testIsland.next != null) {// while there is an island to be traveled
+
+                        numberOfIslandsAhead++;
+
+                        // calculating hours and minutes to travel to next island
+                        hours = testIsland.distanceToNext / DHOANI_SPEED;
                         minutes = hours * 60;
                         testIsland = testIsland.next;
+
+                        // calculating total hours and minutes to travel the goal island
                         totalTimeInHours = totalTimeInHours + hours;
                         totalTimeInMinutes = totalTimeInMinutes + minutes;
-                        if(testIsland.isAnySpaceAvailable()){   
-                                break;
+                        if (testIsland.isAnySpaceAvailable()) {
+                                break; // when the next island with space is found the loop will break
                         }
-                        
+
                 }
 
-                System.out.println("counter: " + counter);
-                System.out.println("Next East Island that can be reached: " + testIsland.name);
+                System.out.println("Next east island with space available: " + testIsland.name);
                 System.out.println("Total time taken to reach Next East Island: " + totalTimeInHours);
-                System.out.println("Total time in Minutes to reach Next East Island: " + totalTimeInMinutes);
 
-                array[0] = counter;
+                /*
+                 * This function returns the two information below that will be used by the
+                 * controller for traversal
+                 */
+                array[0] = numberOfIslandsAhead;
                 array[1] = totalTimeInMinutes;
+                return array;
+        }
 
+        // check the prev island with space available
+        public double[] validateNextIslandThatCanBeTraveledWest() {
+
+                double numberOfIslandsAhead = 0;
+                double hours = 0;
+                double minutes = 0;
+                double totalTimeInHours = 0;
+                double totalTimeInMinutes = 0;
+
+                double[] array = new double[2];
+
+                // A test pointer is (testIsland) is used to travese the island
+                testIsland = currentIsland;
+
+                while (testIsland.prev != null) {// while there is an island to be traveled
+
+                        numberOfIslandsAhead++;
+
+                        // calculating hours and minutes to travel to prev island
+                        hours = testIsland.distanceToPrev / DHOANI_SPEED;
+                        minutes = hours * 60;
+                        testIsland = testIsland.prev;
+
+                        // calculating total hours and minutes to travel the goal island
+                        totalTimeInHours = totalTimeInHours + hours;
+                        totalTimeInMinutes = totalTimeInMinutes + minutes;
+                        if (testIsland.isAnySpaceAvailable()) {
+                                break; // when the prev island with space is found the loop will break
+                        }
+
+                }
+
+                System.out.println("Next West island with space available: " + testIsland.name);
+                System.out.println("Total time taken to reach Next West Island: " + totalTimeInHours);
+
+                /*
+                 * This function returns the two information below that will be used by the
+                 * controller for traversal
+                 */
+                array[0] = numberOfIslandsAhead;
+                array[1] = totalTimeInMinutes;
                 return array;
         }
 
