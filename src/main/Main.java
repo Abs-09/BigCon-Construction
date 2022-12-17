@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static double current_time_in_minutes = 200;
+    static double current_time_in_minutes = 420;
 
     // PRINT MENU OPTIONS a custom function done to print array menu
     public static void printMenu(String[] options) {
@@ -97,7 +97,22 @@ public class Main {
                 case 3:
                     System.out.println("Please enter the amount of Fridge to be Consumed");
                     input = scan.nextDouble();
-                    controller.consumeDieselFromIsland(input);
+                    controller.consumeFridgeFromIsland(input);
+                    break;
+                case 4:
+                    System.out.println("Please enter the amount of Food to be Consumed");
+                    input = scan.nextDouble();
+                    controller.consumeFoodFromIsland(input);
+                    break;
+                case 5:
+                    System.out.println("Please enter the amount of Protected Materials to be Consumed");
+                    input = scan.nextDouble();
+                    controller.consumeProtectedMaterialsFromIsland(input);
+                    break;
+                case 6:
+                    System.out.println("Please enter the amount of Unprotected Materials to be Consumed");
+                    input = scan.nextDouble();
+                    controller.consumeUnprotectedMaterialsFromIsland(input);
                     break;
                 case 7:
                     controller.displayIslandStatus();
@@ -218,10 +233,30 @@ public class Main {
             double input;
             switch (selection) {
                 case 1:
-                    System.out.print("Please select the amount: ");
+                    System.out.print("Please select the amount of diesel: ");
                     input = scan.nextDouble();
                     controller.addDieselToDhoaniFromIsland(input);
                     break;
+                case 2:
+                    System.out.print("Please select the amount of frozen: ");
+                    input = scan.nextDouble();
+                    controller.addFrozenToDhoaniFromIsland(input);
+                case 3:
+                    System.out.print("Please select the amount of Fridge: ");
+                    input = scan.nextDouble();
+                    controller.addFridgeToDhoaniFromIsland(input);
+                case 4:
+                    System.out.print("Please select the amount of Food: ");
+                    input = scan.nextDouble();
+                    controller.addFoodToDhoaniFromIsland(input);
+                case 5:
+                    System.out.print("Please select the amount of Protected Materials: ");
+                    input = scan.nextDouble();
+                    controller.addProtectedMaterialsToDhoaniFromIsland(input);
+                case 6:
+                    System.out.print("Please select the amount of UnprotectedMaterials: ");
+                    input = scan.nextDouble();
+                    controller.addUnprotectedMaterialsToDhoaniFromIsland(input);
                 case 7:
                     controller.displayDhoaniStatus();
                     break;
@@ -265,6 +300,26 @@ public class Main {
                     input = scan.nextDouble();
                     controller.addDieselToIslandFromDhoani(input);
                     break;
+                case 2:
+                    System.out.print("Please select the amount of frozen: ");
+                    input = scan.nextDouble();
+                    controller.addFrozenToIslandFromDhoani(input);
+                case 3:
+                    System.out.print("Please select the amount of Fridge: ");
+                    input = scan.nextDouble();
+                    controller.addFridgeToIslandFromDhoani(input);
+                case 4:
+                    System.out.print("Please select the amount of Food: ");
+                    input = scan.nextDouble();
+                    controller.addFoodToIslandFromDhoani(input);
+                case 5:
+                    System.out.print("Please select the amount of Protected Materials: ");
+                    input = scan.nextDouble();
+                    controller.addProtectedMaterialsToIslandFromDhoani(input);
+                case 6:
+                    System.out.print("Please select the amount of UnprotectedMaterials: ");
+                    input = scan.nextDouble();
+                    controller.addUnprotectedMaterialsToIslandFromDhoani(input);
                 case 7:
                     controller.displayDhoaniStatus();
                     break;
@@ -348,71 +403,22 @@ public class Main {
         controller.checkCurrentTime();
         System.out.println("Current Island: " + controller.islands.currentIsland.name);
         controller.travelToEastIsland();
+
         System.out.println();
         controller.checkCurrentTime();
-        System.out.println("Current Island: " + controller.islands.currentIsland.name);
         controller.travelToEastIsland();
+
         System.out.println();
         controller.checkCurrentTime();
-        System.out.println("Current Island: " + controller.islands.currentIsland.name);
-        controller.travelToWestIsland();
+        controller.travelToEastIsland();
+
         System.out.println();
         controller.checkCurrentTime();
-        System.out.println("Current Island: " + controller.islands.currentIsland.name);
+        controller.travelToEastIsland();
 
-        // controller.islands.validateNextIslandThatCanBeTraveledEast();
-
-        // System.out.println(Main.current_time);
-        // controller.SkipHours(3);
-        // System.out.println(Main.current_time);
-        // controller.SkipHours(4);
-        // System.out.println(Main.current_time);
-
-        // IslandLinkedList islands = new IslandLinkedList();
-        // controller.checkCurrentIsland();
-        // controller.checkCurrentTime();
-
-        // controller.travelToEastIsland();
-        // controller.checkCurrentIsland();
-        // controller.checkCurrentTime();
-
-        // controller.travelToEastIsland();
-        // controller.checkCurrentIsland();
-        // controller.checkCurrentTime();
-
-        // controller.displayIslandDieselStatus();
-        // controller.displayDhoaniDieselStatus();
-        // controller.addDieselToIslandFromDhoani(5);
-        // // controller.addDieselToIslandFromDhoani(2);
-        // controller.displayIslandDieselStatus();
-        // controller.displayDhoaniDieselStatus();
-
-        // int[] arr = { 15, 10, 20, 5, 8, 21, 7, 25, 18 };
-
-        // int i = -1;
-        // int pivot = arr[8];
-        // int temp;
-
-        // for (int j = 0; j <= arr.length - 2; j++) {
-        // // check with pivot
-        // if (arr[j] <= pivot) {
-        // // increment i
-        // i++;
-        // // arr[i] <=> arr [j]
-        // temp = arr[i];
-        // arr[i] = arr[j];
-        // arr[j] = temp;
-        // }
-        // System.out.println("arr[i]: " + arr[i]);
-        // System.out.println("arr[j]: " + arr[j]);
-        // }
-        // temp = arr[i + 1];
-        // arr[i + 1] = arr[8];
-        // arr[8] = temp;
-
-        // for (int y = 0; y < arr.length; y++) {
-        // System.out.print(arr[y] + ", ");
-        // }
+        System.out.println();
+        controller.checkCurrentTime();
+        controller.travelToEastIsland();
 
     }
 

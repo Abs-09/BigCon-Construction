@@ -41,7 +41,7 @@ public class Controller {
             System.out.println("space for requested amount not available");
         } else {
             islands.currentIsland.removeFridge(input);
-            System.out.println("Successfully Consumed");
+            System.out.println("Successfully Consumed"); 
         }
 
     }
@@ -270,15 +270,15 @@ public class Controller {
     }
 
     // REMOVE ITEMS FROM DHOANI
-    public void removeDieselFromDhoani(double input) {
-        if (isDayTime()) {
-            System.out.println("Currently day time. Can only be load/unloaded at night");
-        } else if (dhoani.isDieselRemainingInTank(input)) {
-            System.out.println("Currently day time. Can only be load/unloaded at night");
-        } else {
-            dhoani.removeDiesel(input);
-        }
-    }
+    // public void removeDieselFromDhoani(double input) {
+    //     if (isDayTime()) {
+    //         System.out.println("Currently day time. Can only be load/unloaded at night");
+    //     } else if (dhoani.isDieselRemainingInTank(input)) {
+    //         System.out.println("Currently day time. Can only be load/unloaded at night");
+    //     } else {
+    //         dhoani.removeDiesel(input);
+    //     }
+    // }
 
     // TRAVEL FUNCTIONS
     public void travelToEastIsland() {
@@ -292,10 +292,11 @@ public class Controller {
                     "Currently " + Main.current_time_in_minutes / 60 + ", Dhoani can travel between 6am to 6pm");
         } else if (islands.currentIsland.next == null) { // Checks edge case for island
             System.out.println("Cannnot travel further east");
-        } else if (isPastCurfew(array[1])) { // check if the next island can be traveled within day time
+        } else if (islands.isPastCurfew(array[1])) { // check if the next island can be traveled within day time
             System.out.println("Cannot reach the island with in day time, please wait till next day ");
         } else {
             SkipHours(islands.moveEast(array[0]));
+            islands.checkRemainingIslandsToEastThatCanBeReachedDuringDayTime();
         }
 
     }
@@ -306,15 +307,16 @@ public class Controller {
         // array[0] count
         // array[1] time in minutes
 
-        if (!isDayTime()) { // checks if it is day time
+        if (!isDayTime()) { //checks if it is day time
             System.out.println(
                     "Currently " + Main.current_time_in_minutes / 60 + ", Dhoani can travel between 6am to 6pm");
         } else if (islands.currentIsland.prev == null) { // Checks edge case for island
             System.out.println("Cannnot travel further west");
-        } else if (isPastCurfew(array[1])) { // check if the next island can be traveled within day time
+        } else if (islands.isPastCurfew(array[1])) { // check if the next island can be traveled within day time
             System.out.println("Cannot reach the island with in day time, please wait till next day ");
         } else {
             SkipHours(islands.moveWest(array[0]));
+            islands.checkRemainingIslandsToWestThatCanBeReachedDuringDayTime();
         }
 
     }
@@ -355,15 +357,6 @@ public class Controller {
         Main.current_time_in_minutes = (Main.current_time_in_minutes + minutes) % 1440;
     }
 
-    public boolean isPastCurfew(double minutes) {
 
-        double current_time_in_minutes = Main.current_time_in_minutes + minutes;
-
-        if (current_time_in_minutes >= 360 && current_time_in_minutes <= 1080) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
 }

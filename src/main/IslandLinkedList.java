@@ -174,7 +174,7 @@ public class IslandLinkedList {
         // the time taken
         public void checkRemainingIslandsToEastThatCanBeReachedDuringDayTime() {
 
-                double current_time = Main.current_time_in_minutes;
+                double est_time;
                 int counter = 0;
                 double hours = 0;
                 double minutes = 0;
@@ -188,10 +188,13 @@ public class IslandLinkedList {
                 // The loop is to check if an end island (suppliers island) is reached
                 while (testIsland.next != null) {
 
+                        est_time = totalTimeInMinutes + ((testIsland.distanceToNext / DHOANI_SPEED) * 60);
+                        
                         // The if condition checks for day time - when dhoani is allowed to travel
-                        if (current_time >= 360 && current_time <= 1080) {
-
-                                counter++; // islland counter
+                        if(isPastCurfew(est_time)){
+                                break;
+                        }else{
+                                counter++; // island counter
                                 hours = testIsland.distanceToNext / DHOANI_SPEED; // getting hours by dividing it with
                                                                                   // dhoani speed
                                 minutes = hours * 60;
@@ -200,15 +203,12 @@ public class IslandLinkedList {
                                 totalTimeInMinutes = totalTimeInMinutes + minutes;
 
                                 testIsland = testIsland.next;
-                                current_time += minutes;
-
-                        } else {
-
-                                break;
                         }
 
                 }
 
+                System.out.println("-------");
+                System.out.println("Current Island: " + currentIsland.name);
                 System.out.println("Number of east islands that can be reached during day time: " + counter);
                 System.out.println("Furthest East Island that can be traveled during day time: " + testIsland.name);
                 System.out.println(
@@ -222,7 +222,7 @@ public class IslandLinkedList {
         // the time taken
         public void checkRemainingIslandsToWestThatCanBeReachedDuringDayTime() {
 
-                double current_time = Main.current_time_in_minutes;
+                double est_time;
                 int counter = 0;
                 double hours = 0;
                 double minutes = 0;
@@ -236,11 +236,14 @@ public class IslandLinkedList {
                 // The loop is to check if an end island (suppliers island) is reached
                 while (testIsland.prev != null) {
 
+                        est_time = totalTimeInMinutes + ((testIsland.distanceToPrev / DHOANI_SPEED) * 60);
+                        
                         // The if condition checks for day time - when dhoani is allowed to travel
-                        if (current_time >= 360 && current_time <= 1080) {
-
-                                counter++; // islland counter
-                                hours = testIsland.distanceToNext / DHOANI_SPEED; // getting hours by dividing it with
+                        if(isPastCurfew(est_time)){
+                                break;
+                        }else{
+                                counter++; // island counter
+                                hours = testIsland.distanceToPrev / DHOANI_SPEED; // getting hours by dividing it with
                                                                                   // dhoani speed
                                 minutes = hours * 60;
 
@@ -248,21 +251,29 @@ public class IslandLinkedList {
                                 totalTimeInMinutes = totalTimeInMinutes + minutes;
 
                                 testIsland = testIsland.prev;
-                                current_time += minutes;
-
-                        } else {
-
-                                break;
                         }
 
                 }
 
-                System.out.println("Number of west islands that can be reached during day time: " + counter);
-                System.out.println("Furthest West Island that can be traveled during day time: " + testIsland.name);
+                System.out.println("-------");
+                System.out.println("Current Island: " + currentIsland.name);
+                System.out.println("Number of east islands that can be reached during day time: " + counter);
+                System.out.println("Furthest East Island that can be traveled during day time: " + testIsland.name);
                 System.out.println(
                                 "Total time in hours that will take to reach the furthest island: " + totalTimeInHours);
                 System.out.println("Total time in Minutes that will take to reach the furthest island: "
                                 + totalTimeInMinutes);
 
+        }
+
+        public boolean isPastCurfew(double minutes) {
+
+                double current_time_in_minutes = Main.current_time_in_minutes + minutes;
+
+                if (current_time_in_minutes >= 360 && current_time_in_minutes <= 1080) {
+                        return false;
+                } else {
+                        return true;
+                }
         }
 }
