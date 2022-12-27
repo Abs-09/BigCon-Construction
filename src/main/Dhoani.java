@@ -4,7 +4,7 @@ public class Dhoani {
 
     // DEFINING AND INTIALIZING STORAGES in Kgs
     // -----------------------------------
-    double diesel_in_tank = 3328;
+    double diesel_in_tank = 0;
     double frozen_in_tank = 0;
     double fridge_in_tank = 0;
     // shared storage
@@ -111,7 +111,8 @@ public class Dhoani {
 
     }
 
-    //THIS is to check if food, protected materials, and food in take is available since they share once space
+    // THIS is to check if food, protected materials, and food in take is available
+    // since they share once space
     public boolean isSharedSpaceAvailable(double input) {
 
         // defining current materials in tank
@@ -190,6 +191,10 @@ public class Dhoani {
                 + unprotected_materials_in_tank;
     }
 
+    public double dhoaniCurrentSharedMaterials() {
+        return this.food_in_tank + this.protected_materials_in_tank + this.unprotected_materials_in_tank;
+    }
+
     // displays total dhoani status
     public void dhoaniTotalWeightStatus() {
         System.out.println("--------------------");
@@ -204,7 +209,6 @@ public class Dhoani {
         System.out.println("DHOANI DIESEL STATUS:");
         System.out.println("Current In Tank: " + kgs_to_meter3(diesel_in_tank));
         System.out.println("Maximum Capacity: " + kgs_to_meter3(diesel_MAX));
-        dhoaniTotalWeightStatus();
     }
 
     public void displayFrozenStatus() {
@@ -212,7 +216,6 @@ public class Dhoani {
         System.out.println("DHOANI FROZEN STATUS:");
         System.out.println("Current In Tank: " + frozen_in_tank);
         System.out.println("Maximum Capacity: " + frozen_MAX);
-        dhoaniTotalWeightStatus();
     }
 
     public void displayFridgeStatus() {
@@ -220,34 +223,30 @@ public class Dhoani {
         System.out.println("DHOANI FRIDGE STATUS:");
         System.out.println("Current In Tank: " + fridge_in_tank);
         System.out.println("Maximum Capacity: " + fridge_MAX);
-        dhoaniTotalWeightStatus();
     }
 
     public void displayFoodStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI FOOD STATUS:");
         System.out.println("Current In Tank: " + food_in_tank);
-        System.out.println("Current In Shared Tank: " + food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank);
+        System.out.println("Current In Shared Tank: " + dhoaniCurrentSharedMaterials());
         System.out.println("Maximum Capacity: " + food_protected_unprotected_materials_MAX);
-        dhoaniTotalWeightStatus();
     }
 
     public void displayProtectedMaterialsStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI PROTECTED MATERIALS STATUS:");
         System.out.println("Current In Tank: " + protected_materials_in_tank);
-        System.out.println("Current In Shared Tank: " + food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank);
+        System.out.println("Current In Shared Tank: " + dhoaniCurrentSharedMaterials());
         System.out.println("Maximum Capacity: " + food_protected_unprotected_materials_MAX);
-        dhoaniTotalWeightStatus();
     }
 
     public void displayUnprotectedMaterialsStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI UNPROTECTED MATERIALS STATUS:");
         System.out.println("Current In Tank: " + unprotected_materials_in_tank);
-        System.out.println("Current In Shared Tank: " + food_in_tank + protected_materials_in_tank + unprotected_materials_in_tank);
+        System.out.println("Current In Shared Tank: " + dhoaniCurrentSharedMaterials());
         System.out.println("Maximum Capacity: " + food_protected_unprotected_materials_MAX);
-        dhoaniTotalWeightStatus();
     }
 
     // ---------------------------------------------------------------------

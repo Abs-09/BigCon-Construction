@@ -18,6 +18,7 @@ public class Controller {
         } else {
             islands.currentIsland.removeDiesel(input);
             System.out.println("Successfully Consumed");
+            islands.currentIsland.displayDieselStatus();
         }
 
     }
@@ -30,6 +31,7 @@ public class Controller {
         } else {
             islands.currentIsland.removeFrozen(input);
             System.out.println("Successfully Consumed");
+            islands.currentIsland.displayFrozenStatus();
         }
 
     }
@@ -41,7 +43,8 @@ public class Controller {
             System.out.println("space for requested amount not available");
         } else {
             islands.currentIsland.removeFridge(input);
-            System.out.println("Successfully Consumed"); 
+            System.out.println("Successfully Consumed");
+            islands.currentIsland.displayFridgeStatus();
         }
 
     }
@@ -54,6 +57,8 @@ public class Controller {
         } else {
             islands.currentIsland.removeFood(input);
             System.out.println("Successfully Consumed");
+            islands.currentIsland.displayFoodStatus();
+
         }
 
     }
@@ -66,6 +71,7 @@ public class Controller {
         } else {
             islands.currentIsland.removeProtectedMaterials(input);
             System.out.println("Successfully Consumed");
+            islands.currentIsland.displayProtectedMaterialsStatus();
         }
 
     }
@@ -78,6 +84,7 @@ public class Controller {
         } else {
             islands.currentIsland.removeUnprotectedMaterials(input);
             System.out.println("Successfully Consumed");
+            islands.currentIsland.displayUnprotectedMaterialsStatus();
         }
 
     }
@@ -115,6 +122,9 @@ public class Controller {
         } else {
             islands.currentIsland.removeDiesel(input);
             dhoani.addDiesel(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayDieselStatus();
+            dhoani.displayDieselStatus();
         }
     }
 
@@ -128,6 +138,9 @@ public class Controller {
         } else {
             islands.currentIsland.removeFrozen(input);
             dhoani.addFrozen(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayFrozenStatus();
+            dhoani.displayFrozenStatus();
         }
     }
 
@@ -141,6 +154,9 @@ public class Controller {
         } else {
             islands.currentIsland.removeFridge(input);
             dhoani.addFridge(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayFridgeStatus();
+            dhoani.displayFridgeStatus();
         }
     }
 
@@ -154,6 +170,9 @@ public class Controller {
         } else {
             islands.currentIsland.removeFood(input);
             dhoani.addFood(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayFoodStatus();
+            dhoani.displayFoodStatus();
         }
     }
 
@@ -167,6 +186,9 @@ public class Controller {
         } else {
             islands.currentIsland.removeProtectedMaterials(input);
             dhoani.addProtectedMaterials(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayProtectedMaterialsStatus();
+            dhoani.displayProtectedMaterialsStatus();
         }
     }
 
@@ -180,6 +202,9 @@ public class Controller {
         } else {
             islands.currentIsland.removeUnprotectedMaterials(input);
             dhoani.addUnprotectedMaterials(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayUnprotectedMaterialsStatus();
+            dhoani.displayUnprotectedMaterialsStatus();
         }
     }
 
@@ -194,6 +219,9 @@ public class Controller {
         } else {
             islands.currentIsland.addDiesel(input);
             dhoani.removeDiesel(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayDieselStatus();
+            dhoani.displayDieselStatus();
         }
     }
 
@@ -207,6 +235,9 @@ public class Controller {
         } else {
             islands.currentIsland.addFrozen(input);
             dhoani.removeFrozen(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayFrozenStatus();
+            dhoani.displayFrozenStatus();
         }
     }
 
@@ -220,6 +251,9 @@ public class Controller {
         } else {
             islands.currentIsland.addFridge(input);
             dhoani.removeFridge(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayFridgeStatus();
+            dhoani.displayFridgeStatus();
         }
     }
 
@@ -233,6 +267,9 @@ public class Controller {
         } else {
             islands.currentIsland.addFood(input);
             dhoani.removeFood(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayFoodStatus();
+            dhoani.displayFoodStatus();
         }
     }
 
@@ -246,6 +283,9 @@ public class Controller {
         } else {
             islands.currentIsland.addProtectedMaterials(input);
             dhoani.removeProtectedMaterials(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayProtectedMaterialsStatus();
+            dhoani.displayProtectedMaterialsStatus();
         }
     }
 
@@ -257,27 +297,41 @@ public class Controller {
         } else {
             islands.currentIsland.addUnprotectedMaterials(input);
             dhoani.removeUnprotectedMaterials(input);
+            System.out.println("Successful!");
+            islands.currentIsland.displayUnprotectedMaterialsStatus();
+            dhoani.displayUnprotectedMaterialsStatus();
         }
     }
 
     // DISPLAY STATUS
-    public void displayIslandDieselStatus() {
+    public void displayIslandStatus() {
         islands.currentIsland.displayDieselStatus();
+        islands.currentIsland.displayFrozenStatus();
+        islands.currentIsland.displayFridgeStatus();
+        islands.currentIsland.displayFoodStatus();
+        islands.currentIsland.displayProtectedMaterialsStatus();
+        islands.currentIsland.displayUnprotectedMaterialsStatus();
     }
 
-    public void displayDhoaniDieselStatus() {
+    public void displayDhoaniStatus() {
         dhoani.displayDieselStatus();
+        dhoani.displayFrozenStatus();
+        dhoani.displayFridgeStatus();
+        dhoani.displayFoodStatus();
+        dhoani.displayProtectedMaterialsStatus();
+        dhoani.displayUnprotectedMaterialsStatus();
+        dhoani.dhoaniTotalWeightStatus();
     }
 
     // REMOVE ITEMS FROM DHOANI
     // public void removeDieselFromDhoani(double input) {
-    //     if (isDayTime()) {
-    //         System.out.println("Currently day time. Can only be load/unloaded at night");
-    //     } else if (dhoani.isDieselRemainingInTank(input)) {
-    //         System.out.println("Currently day time. Can only be load/unloaded at night");
-    //     } else {
-    //         dhoani.removeDiesel(input);
-    //     }
+    // if (isDayTime()) {
+    // System.out.println("Currently day time. Can only be load/unloaded at night");
+    // } else if (dhoani.isDieselRemainingInTank(input)) {
+    // System.out.println("Currently day time. Can only be load/unloaded at night");
+    // } else {
+    // dhoani.removeDiesel(input);
+    // }
     // }
 
     // TRAVEL FUNCTIONS
@@ -307,7 +361,7 @@ public class Controller {
         // array[0] count
         // array[1] time in minutes
 
-        if (!isDayTime()) { //checks if it is day time
+        if (!isDayTime()) { // checks if it is day time
             System.out.println(
                     "Currently " + Main.current_time_in_minutes / 60 + ", Dhoani can travel between 6am to 6pm");
         } else if (islands.currentIsland.prev == null) { // Checks edge case for island
@@ -323,17 +377,6 @@ public class Controller {
 
     public void checkCurrentIsland() {
         System.out.println("Current Island: " + islands.currentIsland.name);
-    }
-
-    // DISPLAY SPACE
-    public void displayDhoaniStatus() {
-        dhoani.displayDieselStatus();
-        // TODO figure out the best way to diplay the status of others
-    }
-
-    public void displayIslandStatus() {
-        islands.currentIsland.displayDieselStatus();
-        // TODO figure out the best way to diplay the status of others
     }
 
     // ---------------------------------------------------------------------
@@ -356,7 +399,5 @@ public class Controller {
         double minutes = hours * 60;
         Main.current_time_in_minutes = (Main.current_time_in_minutes + minutes) % 1440;
     }
-
-
 
 }

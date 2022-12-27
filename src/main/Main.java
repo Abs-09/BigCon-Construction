@@ -1,11 +1,10 @@
 package src.main;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
-    static double current_time_in_minutes = 420;
+    static double current_time_in_minutes = 1140;
 
     // PRINT MENU OPTIONS a custom function done to print array menu
     public static void printMenu(String[] options) {
@@ -26,12 +25,16 @@ public class Main {
                 "3-Add Items to Island Warehouse from Dhoani",
                 "4-View Storage",
                 "5-Travel",
+                "6-Check Current Island",
+                "7-Check Current Time",
+                "8-Skip Time",
                 "0-Exit System",
         };
 
         // BACKEND
         Scanner scan = new Scanner(System.in);
         int selection;
+        double input;
         do {
             printMenu(options);
             selection = scan.nextInt();
@@ -51,12 +54,23 @@ public class Main {
                 case 5:
                     travelMenu(controller);
                     break;
+                case 6:
+                    controller.checkCurrentIsland();
+                    break;
+                case 7:
+                    controller.checkCurrentTime();
+                    break;
+                case 8:
+                    System.out.print("How many hours would you like to skip?");
+                    input = scan.nextInt();
+                    controller.SkipHours(input);
                 case 0:
                     break;
                 default:
                     System.out.println("Invalid Option");
             }
         } while (selection != 0);
+        scan.nextLine();
         scan.close();
         System.out.println("System Exited");
     }
@@ -397,28 +411,29 @@ public class Main {
 
     public static void main(String[] args) {
         Controller controller = new Controller();
-        // mainMenu(controller);
+        mainMenu(controller);
 
-        System.out.println();
-        controller.checkCurrentTime();
-        System.out.println("Current Island: " + controller.islands.currentIsland.name);
-        controller.travelToEastIsland();
+        // System.out.println();
+        // controller.checkCurrentTime();
+        // System.out.println("Current Island: " +
+        // controller.islands.currentIsland.name);
+        // controller.travelToEastIsland();
 
-        System.out.println();
-        controller.checkCurrentTime();
-        controller.travelToEastIsland();
+        // System.out.println();
+        // controller.checkCurrentTime();
+        // controller.travelToEastIsland();
 
-        System.out.println();
-        controller.checkCurrentTime();
-        controller.travelToEastIsland();
+        // System.out.println();
+        // controller.checkCurrentTime();
+        // controller.travelToEastIsland();
 
-        System.out.println();
-        controller.checkCurrentTime();
-        controller.travelToEastIsland();
+        // System.out.println();
+        // controller.checkCurrentTime();
+        // controller.travelToEastIsland();
 
-        System.out.println();
-        controller.checkCurrentTime();
-        controller.travelToEastIsland();
+        // System.out.println();
+        // controller.checkCurrentTime();
+        // controller.travelToEastIsland();
 
     }
 

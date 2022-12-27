@@ -16,15 +16,16 @@ public class IslandLinkedList {
         public IslandLinkedList() {
 
                 // CREATING NEW ISLAND
-                this.islandSupply1 = new Island("Island Supplier 1", 0, 50, 50, 1000, 1000, 1000,
-                                1000, 1000, 100, 1000, 1000, 1000, 1000);
+                this.islandSupply1 = new Island("Island Supplier 1", 0, 50, 100000, 100000, 100000, 100000,
+                                100000, 100000, 100000, 100000, 100000, 100000, 100000);
                 this.islandA = new Island("Island A", 50, 80, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.1, 10);
                 this.islandB = new Island("Island B", 80, 60, 4, 0.04, 0.05, 0.09, 11, 1000,
                                 4, 0.04, 0.05, 0.09, 11);
                 this.islandC = new Island("Island C", 60, 40, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.11, 9);
                 this.islandD = new Island("Island D", 40, 70, 0, 0, 0, 0, 0, 0, 4, 0.04, 0.05, 0.08, 9);
-                this.islandSupply2 = new Island("Island Supplier 2", 70, 0, 50, 1000, 1000, 1000, 1000, 1000, 100, 1000,
-                                1000, 1000, 1000);
+                this.islandSupply2 = new Island("Island Supplier 2", 70, 0, 50, 100000, 100000, 100000, 100000, 100000,
+                                100000, 100000,
+                                100000, 100000, 100000);
 
                 // ASSIGNING ISLAND PATHS (ie: linkin the next and prev nodes)
                 // islandSupply1
@@ -189,11 +190,11 @@ public class IslandLinkedList {
                 while (testIsland.next != null) {
 
                         est_time = totalTimeInMinutes + ((testIsland.distanceToNext / DHOANI_SPEED) * 60);
-                        
+
                         // The if condition checks for day time - when dhoani is allowed to travel
-                        if(isPastCurfew(est_time)){
+                        if (isPastCurfew(est_time)) {
                                 break;
-                        }else{
+                        } else {
                                 counter++; // island counter
                                 hours = testIsland.distanceToNext / DHOANI_SPEED; // getting hours by dividing it with
                                                                                   // dhoani speed
@@ -237,11 +238,11 @@ public class IslandLinkedList {
                 while (testIsland.prev != null) {
 
                         est_time = totalTimeInMinutes + ((testIsland.distanceToPrev / DHOANI_SPEED) * 60);
-                        
+
                         // The if condition checks for day time - when dhoani is allowed to travel
-                        if(isPastCurfew(est_time)){
+                        if (isPastCurfew(est_time)) {
                                 break;
-                        }else{
+                        } else {
                                 counter++; // island counter
                                 hours = testIsland.distanceToPrev / DHOANI_SPEED; // getting hours by dividing it with
                                                                                   // dhoani speed

@@ -176,7 +176,6 @@ public class Island {
 
     }
 
-
     // Generelaized Space Checker------------------------
     // This function is used to check for diesel, frozen, fridge space.
     private boolean checkSpace(double input, double storage_in_tank, double MAX) {
