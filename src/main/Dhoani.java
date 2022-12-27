@@ -199,54 +199,54 @@ public class Dhoani {
     public void dhoaniTotalWeightStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI STATUS:");
-        System.out.println("Current Total storage in Dhoani: " + dhoaniCurrentTotalMaterials());
-        System.out.println("Dhonai Total Maximum Capacity: " + dhoani_allowed_max + "\n");
+        System.out.println("Current Total storage in Dhoani (kgs): " + dhoaniCurrentTotalMaterials());
+        System.out.println("Dhonai Total Maximum Capacity (kgs): " + dhoani_allowed_max + "\n");
     }
 
     // for diesel (seperate function since kgs_to_meter3 conversion has to be made)
     public void displayDieselStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI DIESEL STATUS:");
-        System.out.println("Current In Tank: " + kgs_to_meter3(diesel_in_tank));
-        System.out.println("Maximum Capacity: " + kgs_to_meter3(diesel_MAX));
+        System.out.println("Current In Tank (m3): " + kgs_to_meter3(diesel_in_tank));
+        System.out.println("Maximum Capacity (m3): " + kgs_to_meter3(diesel_MAX));
     }
 
     public void displayFrozenStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI FROZEN STATUS:");
-        System.out.println("Current In Tank: " + frozen_in_tank);
-        System.out.println("Maximum Capacity: " + frozen_MAX);
+        System.out.println("Current In Tank (kgs): " + frozen_in_tank);
+        System.out.println("Maximum Capacity (kgs): " + frozen_MAX);
     }
 
     public void displayFridgeStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI FRIDGE STATUS:");
-        System.out.println("Current In Tank: " + fridge_in_tank);
-        System.out.println("Maximum Capacity: " + fridge_MAX);
+        System.out.println("Current In Tank (kgs): " + fridge_in_tank);
+        System.out.println("Maximum Capacity (kgs): " + fridge_MAX);
     }
 
     public void displayFoodStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI FOOD STATUS:");
-        System.out.println("Current In Tank: " + food_in_tank);
-        System.out.println("Current In Shared Tank: " + dhoaniCurrentSharedMaterials());
-        System.out.println("Maximum Capacity: " + food_protected_unprotected_materials_MAX);
+        System.out.println("Current In Tank (kgs): " + food_in_tank);
+        System.out.println("Current In Shared Tank (kgs): " + dhoaniCurrentSharedMaterials());
+        System.out.println("Maximum Capacity (kgs): " + food_protected_unprotected_materials_MAX);
     }
 
     public void displayProtectedMaterialsStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI PROTECTED MATERIALS STATUS:");
-        System.out.println("Current In Tank: " + protected_materials_in_tank);
-        System.out.println("Current In Shared Tank: " + dhoaniCurrentSharedMaterials());
-        System.out.println("Maximum Capacity: " + food_protected_unprotected_materials_MAX);
+        System.out.println("Current In Tank (kgs): " + protected_materials_in_tank);
+        System.out.println("Current In Shared Tank (kgs): " + dhoaniCurrentSharedMaterials());
+        System.out.println("Maximum Capacity (kgs): " + food_protected_unprotected_materials_MAX);
     }
 
     public void displayUnprotectedMaterialsStatus() {
         System.out.println("--------------------");
         System.out.println("DHOANI UNPROTECTED MATERIALS STATUS:");
-        System.out.println("Current In Tank: " + unprotected_materials_in_tank);
-        System.out.println("Current In Shared Tank: " + dhoaniCurrentSharedMaterials());
-        System.out.println("Maximum Capacity: " + food_protected_unprotected_materials_MAX);
+        System.out.println("Current In Tank (kgs): " + unprotected_materials_in_tank);
+        System.out.println("Current In Shared Tank (kgs): " + dhoaniCurrentSharedMaterials());
+        System.out.println("Maximum Capacity (kgs): " + food_protected_unprotected_materials_MAX);
     }
 
     // ---------------------------------------------------------------------

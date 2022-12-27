@@ -64,6 +64,7 @@ public class Main {
                     System.out.print("How many hours would you like to skip?");
                     input = scan.nextInt();
                     controller.SkipHours(input);
+                    break;
                 case 0:
                     break;
                 default:
@@ -99,32 +100,32 @@ public class Main {
             double input;
             switch (selection) {
                 case 1:
-                    System.out.println("Please enter the amount of diesel to be Consumed");
+                    System.out.println("Please enter the amount of diesel to be Consumed (m3): ");
                     input = scan.nextDouble();
                     controller.consumeDieselFromIsland(input);
                     break;
                 case 2:
-                    System.out.println("Please enter the amount of frozen to be Consumed");
+                    System.out.println("Please enter the amount of frozen to be Consumed (kgs): ");
                     input = scan.nextDouble();
                     controller.consumeFrozenFromIsland(input);
                     break;
                 case 3:
-                    System.out.println("Please enter the amount of Fridge to be Consumed");
+                    System.out.println("Please enter the amount of Fridge to be Consumed (kgs): ");
                     input = scan.nextDouble();
                     controller.consumeFridgeFromIsland(input);
                     break;
                 case 4:
-                    System.out.println("Please enter the amount of Food to be Consumed");
+                    System.out.println("Please enter the amount of Food to be Consumed (kgs): ");
                     input = scan.nextDouble();
                     controller.consumeFoodFromIsland(input);
                     break;
                 case 5:
-                    System.out.println("Please enter the amount of Protected Materials to be Consumed");
+                    System.out.println("Please enter the amount of Protected Materials to be Consumed (kgs): ");
                     input = scan.nextDouble();
                     controller.consumeProtectedMaterialsFromIsland(input);
                     break;
                 case 6:
-                    System.out.println("Please enter the amount of Unprotected Materials to be Consumed");
+                    System.out.println("Please enter the amount of Unprotected Materials to be Consumed (kgs): ");
                     input = scan.nextDouble();
                     controller.consumeUnprotectedMaterialsFromIsland(input);
                     break;
@@ -247,30 +248,35 @@ public class Main {
             double input;
             switch (selection) {
                 case 1:
-                    System.out.print("Please select the amount of diesel: ");
+                    System.out.print("Please select the amount of diesel (m3): ");
                     input = scan.nextDouble();
                     controller.addDieselToDhoaniFromIsland(input);
                     break;
                 case 2:
-                    System.out.print("Please select the amount of frozen: ");
+                    System.out.print("Please select the amount of frozen (kgs): ");
                     input = scan.nextDouble();
                     controller.addFrozenToDhoaniFromIsland(input);
+                    break;
                 case 3:
-                    System.out.print("Please select the amount of Fridge: ");
+                    System.out.print("Please select the amount of Fridge (kgs): ");
                     input = scan.nextDouble();
                     controller.addFridgeToDhoaniFromIsland(input);
+                    break;
                 case 4:
-                    System.out.print("Please select the amount of Food: ");
+                    System.out.print("Please select the amount of Food (kgs): ");
                     input = scan.nextDouble();
                     controller.addFoodToDhoaniFromIsland(input);
+                    break;
                 case 5:
-                    System.out.print("Please select the amount of Protected Materials: ");
+                    System.out.print("Please select the amount of Protected Materials (kgs): ");
                     input = scan.nextDouble();
                     controller.addProtectedMaterialsToDhoaniFromIsland(input);
+                    break;
                 case 6:
-                    System.out.print("Please select the amount of UnprotectedMaterials: ");
+                    System.out.print("Please select the amount of UnprotectedMaterials (kgs): ");
                     input = scan.nextDouble();
                     controller.addUnprotectedMaterialsToDhoaniFromIsland(input);
+                    break;
                 case 7:
                     controller.displayDhoaniStatus();
                     break;
@@ -310,30 +316,35 @@ public class Main {
             double input;
             switch (selection) {
                 case 1:
-                    System.out.print("Please select the amount: ");
+                    System.out.print("Please select the amount (kgs): ");
                     input = scan.nextDouble();
                     controller.addDieselToIslandFromDhoani(input);
                     break;
                 case 2:
-                    System.out.print("Please select the amount of frozen: ");
+                    System.out.print("Please select the amount of frozen (kgs): ");
                     input = scan.nextDouble();
                     controller.addFrozenToIslandFromDhoani(input);
+                    break;
                 case 3:
-                    System.out.print("Please select the amount of Fridge: ");
+                    System.out.print("Please select the amount of Fridge (kgs): ");
                     input = scan.nextDouble();
                     controller.addFridgeToIslandFromDhoani(input);
+                    break;
                 case 4:
-                    System.out.print("Please select the amount of Food: ");
+                    System.out.print("Please select the amount of Food (kgs): ");
                     input = scan.nextDouble();
                     controller.addFoodToIslandFromDhoani(input);
+                    break;
                 case 5:
-                    System.out.print("Please select the amount of Protected Materials: ");
+                    System.out.print("Please select the amount of Protected Materials (kgs): ");
                     input = scan.nextDouble();
                     controller.addProtectedMaterialsToIslandFromDhoani(input);
+                    break;
                 case 6:
-                    System.out.print("Please select the amount of UnprotectedMaterials: ");
+                    System.out.print("Please select the amount of UnprotectedMaterials (kgs): ");
                     input = scan.nextDouble();
                     controller.addUnprotectedMaterialsToIslandFromDhoani(input);
+                    break;
                 case 7:
                     controller.displayDhoaniStatus();
                     break;
